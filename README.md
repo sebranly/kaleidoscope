@@ -1,14 +1,8 @@
 # Description
 
 Live at https://sebranly.github.io/kaleidoscope/
+
 No license for now on purpose: https://choosealicense.com/no-permission/
-
-# Template TODOs
-
-- [ ] On GitHub go to Settings > Pages and activate it for `master`
-  - [ ] A GitHub Action should be queued for publishing the website live
-- [ ] Go back to `main`
-  - [ ] `placeholder`
 
 ## Development
 
