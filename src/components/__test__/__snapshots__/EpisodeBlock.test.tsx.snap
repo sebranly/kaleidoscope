@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EpisodeBlock 1`] = `
+NodeList [
+  <div
+    class="episode-block"
+  >
+    <div
+      class="episode-header bg-color-red"
+    >
+      <div
+        class="episode-up"
+      >
+        🔼
+      </div>
+      Some title
+      <div
+        class="episode-down"
+      >
+        🔽
+      </div>
+    </div>
+    <div
+      class="episode-content"
+    >
+      <div
+        class="episode-writers"
+      >
+        <b>
+          Writer
+          s
+          :
+        </b>
+         
+        Someone, Someone else
+      </div>
+      <div
+        class="episode-color"
+      >
+        <b>
+          Color:
+        </b>
+         
+        🔴
+         
+        🟥
+         
+        red
+      </div>
+      <div
+        class="episode-nunmber"
+      >
+        <b>
+          Episode Number:
+        </b>
+         
+        1️⃣
+         
+        one
+      </div>
+    </div>
+  </div>,
+]
+`;
