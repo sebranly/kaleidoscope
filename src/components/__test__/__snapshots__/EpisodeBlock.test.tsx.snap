@@ -48,7 +48,7 @@ NodeList [
         red
       </div>
       <div
-        class="episode-nunmber"
+        class="episode-number"
       >
         <b>
           Episode Number:

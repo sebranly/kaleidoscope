@@ -38,7 +38,7 @@ const EpisodeBlock: React.FC<EpisodeBlockProps> = (props) => {
         <div className="episode-color">
           <b>Color:</b> {getDotEmoji(color)} {getSquareEmoji(color)} {color}
         </div>
-        <div className="episode-nunmber">
+        <div className="episode-number">
           <b>Episode Number:</b> {getNumberEmoji(defaultNumber)} {getNumberWord(defaultNumber)}
         </div>
       </div>
