@@ -1,5 +1,5 @@
 import { EPISODE_COUNT } from '../constants/general';
-import { Color, Episode } from '../types';
+import { Color, Episode, TimeUnits } from '../types';
 
 const getSquareEmoji = (color: Color) => {
   const { Yellow, Green, Blue, Violet, Orange, Red, Pink, White } = Color;
@@ -101,4 +101,47 @@ const shuffleEpisodes = (episodes: Episode[]) => {
   return [...randomOrderEpisodes.sort(() => Math.random() - 0.5), episodes[EPISODE_COUNT - 1]];
 };
 
-export { getDotEmoji, getNumberEmoji, getNumberWord, getSquareEmoji, shuffleEpisodes };
+const pluralize = (str: string, nb: number) => {
+  if (nb === 1 || nb < 0) return str;
+
+  return `${str}s`;
+};
+
+const convertSecondsToUnits = (seconds: number): TimeUnits => {
+  if (seconds <= 0) {
+    return {
+      days: 0,
+      hours: 0,
+      minutes: 0,
+      seconds: 0
+    };
+  }
+
+  const days = Math.floor(seconds / (60 * 60 * 24));
+  const hours = Math.floor((seconds % (60 * 60 * 24)) / (60 * 60));
+  const minutes = Math.floor((seconds % (60 * 60)) / 60);
+  const secondsBis = Math.floor(seconds % 60);
+
+  return {
+    days,
+    hours,
+    minutes,
+    seconds: secondsBis
+  };
+};
+
+const convertToTwoDigits = (nb: number) => {
+  if (nb < 10) return `0${nb}`;
+  return `${nb}`;
+};
+
+export {
+  convertSecondsToUnits,
+  convertToTwoDigits,
+  getDotEmoji,
+  getNumberEmoji,
+  getNumberWord,
+  getSquareEmoji,
+  pluralize,
+  shuffleEpisodes
+};

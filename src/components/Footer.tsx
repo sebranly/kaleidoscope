@@ -10,6 +10,7 @@ const Footer = () => (
       </a>{' '}
       with 💙
     </div>
+    <div>This is not an official project: this is a fan project</div>
     <div>
       Website version{' '}
       <a href={CHANGELOG_URL} rel="noopener noreferrer" title="Website changelog" target="_blank">

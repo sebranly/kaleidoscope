@@ -4,6 +4,6 @@ import App from './App';
 
 test('renders text', () => {
   render(<App />);
-  const textElement = screen.getByText(/Kaleidoscope/i);
+  const textElement = screen.getByText(/Episodes Watch List/i);
   expect(textElement).toBeInTheDocument();
 });

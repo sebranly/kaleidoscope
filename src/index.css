@@ -11,6 +11,33 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
+li span {
+  display: block;
+  font-size: 50px;
+  font-weight: bold;
+}
+
+.count-down-timer {
+  display: block;
+  list-style-type: disc;
+  text-transform: uppercase;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 0;
+}
+
+.count-down-timer-element {
+  display: inline-block;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.count-down-timer-unit {
+  font-size: 14px;
+}
+
 .episodes-list {
   display: flex;
   flex-wrap: wrap;
@@ -48,12 +75,34 @@ code {
   .episodes-watch-order {
     font-size: 24px;
   }
+
+  .introduction {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .introduction-line {
+    margin-bottom: 10px;
+  }
+
+  .episodes-watch-order-introduction {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .episodes-watch-order-introduction-line {
+    margin-bottom: 10px;
+  }
 }
 
 @media screen and (min-width: 701px) {
   .episodes-watch-order {
     font-size: 30px;
   }
+}
+
+.episodes-watch-order-introduction {
+  margin-bottom: 10px;
 }
 
 .episode-header {
@@ -65,6 +114,11 @@ code {
 
 .episode-header > div {
   display: inline;
+}
+
+.episode-locked {
+  float: left;
+  cursor: not-allowed;
 }
 
 .episode-up {
@@ -109,7 +163,7 @@ code {
 }
 
 .bg-color-pink {
-  background-color: pink;
+  background: linear-gradient(110deg, pink 50%, #964b00 50%);
 }
 
 .bg-color-white {
