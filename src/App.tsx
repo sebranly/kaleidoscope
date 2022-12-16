@@ -19,40 +19,11 @@ function App() {
   const [copiedWatchOrder, setCopiedWatchOrder] = React.useState(false);
   const { width } = useWindowSize();
 
-  const colorCode = episodesList
-    .map((episode: Episode) => {
-      const { color } = episode;
-      return color.charAt(0).toUpperCase();
-    })
-    .join('');
-
-  const numberCode = episodesList
-    .map((episode: Episode) => {
-      const { defaultNumber } = episode;
-      return defaultNumber;
-    })
-    .join('');
-
-  const episodesSquaresEmojis = episodesList
-    .map((episode: Episode) => {
-      const { color } = episode;
-      return getSquareEmoji(color);
-    })
-    .join('');
-
-  const episodesDotsEmojis = episodesList
-    .map((episode: Episode) => {
-      const { color } = episode;
-      return getDotEmoji(color);
-    })
-    .join('');
-
-  const episodesNumbersEmojis = episodesList
-    .map((episode: Episode) => {
-      const { defaultNumber } = episode;
-      return getNumberEmoji(defaultNumber);
-    })
-    .join('');
+  const colorCode = episodesList.map((ep: Episode) => ep.color.charAt(0).toUpperCase()).join('');
+  const numberCode = episodesList.map((ep: Episode) => ep.defaultNumber).join('');
+  const episodesSquaresEmojis = episodesList.map((ep: Episode) => getSquareEmoji(ep.color)).join('');
+  const episodesDotsEmojis = episodesList.map((ep: Episode) => getDotEmoji(ep.color)).join('');
+  const episodesNumbersEmojis = episodesList.map((ep: Episode) => getNumberEmoji(ep.defaultNumber)).join('');
 
   const sharingText = `Get your unique Kaleidoscope viewing order on: ${WEBSITE_URL}\n\nMine is:\n${episodesDotsEmojis}\n${episodesSquaresEmojis}\n${episodesNumbersEmojis}\n\n`;
   const classnamesCopy = copiedWatchOrder ? 'share-button-disabled' : 'share-button-enabled';
