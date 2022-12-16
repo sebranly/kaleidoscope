@@ -62,7 +62,9 @@ function App() {
           <div className="introduction-line">
             Created by Eric Garcia, Kaleidoscope is a{' '}
             <b>
-              <i>non-linear</i>
+              <div className="color-light-blue inline">
+                <i>non-linear</i>
+              </div>
             </b>{' '}
             8-episode show on Netflix.
           </div>
@@ -72,7 +74,9 @@ function App() {
           <div className="introduction-line">
             This webpage allows you to{' '}
             <b>
-              <i>create and share</i>
+              <div className="color-light-blue inline">
+                <i>create and share</i>
+              </div>
             </b>{' '}
             a viewing order among the 5040 viewing possibilities!
           </div>
@@ -96,6 +100,7 @@ function App() {
           <div className="episodes-watch-order-line">{episodesDotsEmojis}</div>
           <div className="episodes-watch-order-line">{episodesSquaresEmojis}</div>
           <div className="episodes-watch-order-line">{episodesNumbersEmojis}</div>
+          <br />
           <CopyToClipboard options={{ message: '' }} text={sharingText} onCopy={() => setCopiedWatchOrder(true)}>
             <button className={`share-button ${classnamesCopy}`} disabled={copiedWatchOrder}>
               {copiedWatchOrder ? '📋 Copied to clipboard' : '🌐 Share your viewing order'}
@@ -104,8 +109,12 @@ function App() {
           <hr />
         </div>
         <div>
-          <div>Color Code: {colorCode}</div>
-          <div>Number Code: {numberCode}</div>
+          <div>
+            <b>Color Code:</b> {colorCode}
+          </div>
+          <div>
+            <b>Number Code:</b> {numberCode}
+          </div>
         </div>
       </header>
       <Footer />

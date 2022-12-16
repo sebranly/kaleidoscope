@@ -32,24 +32,33 @@ const CountDownTimer: React.FC<CountDownTimerProps> = (props) => {
     return null;
   }
 
+  const isFixedDays = days === 0;
+  const isFixedHours = isFixedDays && hours === 0;
+  const isFixedMinutes = isFixedHours && minutes === 0;
+
   const items = [
     { value: days, label: 'day' },
     { value: hours, label: 'hour' },
     { value: minutes, label: 'minute' },
     { value: seconds, label: 'second' }
   ].map((element: { value: number; label: string }) => {
-    const { value, label } = element;
+    const { value, label: l } = element;
+    const isFixed =
+      (l === 'day' && isFixedDays) || (l === 'hour' && isFixedHours) || (l === 'minute' && isFixedMinutes);
+
+    const classnamesValue = isFixed ? 'color-light-blue' : '';
+
     return (
-      <li className="count-down-timer-element" key={label}>
-        <span>{convertToTwoDigits(value)}</span>
-        <div className="count-down-timer-unit">{pluralize(label, value)}</div>
+      <li className="count-down-timer-element" key={l}>
+        <span className={classnamesValue}>{convertToTwoDigits(value)}</span>
+        <div className="count-down-timer-unit">{pluralize(l, value)}</div>
       </li>
     );
   });
 
   return (
     <div className="count-down">
-      <h3>Countdown to show release</h3>
+      <h3>Countdown to Series Premiere</h3>
       <ul className="count-down-timer">{items}</ul>
     </div>
   );

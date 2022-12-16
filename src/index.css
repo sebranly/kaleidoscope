@@ -11,6 +11,26 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
+h1 {
+  color: #209cee;
+}
+
+h2 {
+  color: #209cee;
+}
+
+h3 {
+  color: #209cee;
+}
+
+.color-light-blue {
+  color: #209cee;
+}
+
+.inline {
+  display: inline;
+}
+
 li span {
   display: block;
   font-size: 50px;
