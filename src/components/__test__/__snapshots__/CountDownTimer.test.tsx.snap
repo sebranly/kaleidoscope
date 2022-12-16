@@ -6,7 +6,7 @@ NodeList [
     class="count-down"
   >
     <h3>
-      Countdown to show release
+      Countdown to Series Premiere
     </h3>
     <ul
       class="count-down-timer"
@@ -14,7 +14,9 @@ NodeList [
       <li
         class="count-down-timer-element"
       >
-        <span>
+        <span
+          class="color-light-blue"
+        >
           00
         </span>
         <div
@@ -26,7 +28,9 @@ NodeList [
       <li
         class="count-down-timer-element"
       >
-        <span>
+        <span
+          class=""
+        >
           01
         </span>
         <div
@@ -38,7 +42,9 @@ NodeList [
       <li
         class="count-down-timer-element"
       >
-        <span>
+        <span
+          class=""
+        >
           01
         </span>
         <div
@@ -50,7 +56,9 @@ NodeList [
       <li
         class="count-down-timer-element"
       >
-        <span>
+        <span
+          class=""
+        >
           02
         </span>
         <div

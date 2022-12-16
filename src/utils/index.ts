@@ -1,5 +1,5 @@
 import { EPISODE_COUNT } from '../constants/general';
-import { Color, Episode, TimeUnits } from '../types';
+import { Color, Direction, Episode, TimeUnits } from '../types';
 
 const getSquareEmoji = (color: Color) => {
   const { Yellow, Green, Blue, Violet, Orange, Red, Pink, White } = Color;
@@ -101,6 +101,23 @@ const shuffleEpisodes = (episodes: Episode[]) => {
   return [...randomOrderEpisodes.sort(() => Math.random() - 0.5), episodes[EPISODE_COUNT - 1]];
 };
 
+const swapEpisodes = (episodes: Episode[], direction: Direction, index: number) => {
+  // The finale has to be watched last
+  const firstEpisodes = episodes.slice(0, EPISODE_COUNT - 1);
+
+  const cannotGoUp = direction === Direction.Up && index <= 0;
+  const cannotGoDown = direction === Direction.Down && index >= EPISODE_COUNT - 2;
+
+  if (cannotGoUp || cannotGoDown) return episodes;
+
+  const delta = direction === Direction.Up ? -1 : 1;
+  const episodeTemp = firstEpisodes[index];
+  firstEpisodes[index] = firstEpisodes[index + delta];
+  firstEpisodes[index + delta] = episodeTemp;
+
+  return [...firstEpisodes, episodes[EPISODE_COUNT - 1]];
+};
+
 const pluralize = (str: string, nb: number) => {
   if (nb === 1 || nb < 0) return str;
 
@@ -143,5 +160,6 @@ export {
   getNumberWord,
   getSquareEmoji,
   pluralize,
-  shuffleEpisodes
+  shuffleEpisodes,
+  swapEpisodes
 };
