@@ -13,6 +13,8 @@ import { CountDownTimer } from './components/CountDownTimer';
 
 function App() {
   const [episodesList, _setEpisodesList] = React.useState<Episode[]>(shuffleEpisodes(episodes));
+
+  // Setting it to end date by default not to show the countdown timer
   const [currentUnixTime, setCurrentUnixTime] = React.useState<number>(SHOW_RELEASE_DATE_PT);
   const [copiedWatchOrder, setCopiedWatchOrder] = React.useState(false);
   const { width } = useWindowSize();
