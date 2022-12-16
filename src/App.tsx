@@ -42,6 +42,10 @@ function App() {
   };
 
   React.useEffect(() => {
+    setCopiedWatchOrder(false);
+  }, [episodesList]);
+
+  React.useEffect(() => {
     onMount();
   }, []);
 
@@ -85,6 +89,9 @@ function App() {
 
         <h2>Episodes Watch List</h2>
         <div className="episodes-watch-order-introduction">
+          <div className="episodes-watch-order-introduction-line">
+            The following viewing order has been picked randomly
+          </div>
           <div className="episodes-watch-order-introduction-line">
             Interact with 🔼 and 🔽 to change the order of one specific episode (except the finale)
           </div>
