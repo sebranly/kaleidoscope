@@ -1,5 +1,69 @@
-import { Color } from '../../types';
-import { getDotEmoji, getNumberEmoji, getNumberWord, getSquareEmoji } from '../index';
+import { Color, Episode } from '../../types';
+import {
+  convertSecondsToUnits,
+  convertToTwoDigits,
+  getDotEmoji,
+  getNumberEmoji,
+  getNumberWord,
+  getSquareEmoji,
+  pluralize,
+  shuffleEpisodes
+} from '../index';
+
+const episodes: Episode[] = [
+  {
+    color: Color.Yellow,
+    defaultNumber: 1,
+    director: 'somebody',
+    hoursFromHeist: -6 * 7 * 24,
+    title: '6 Weeks Before The Heist',
+    writers: ['somebody']
+  },
+  {
+    color: Color.Green,
+    defaultNumber: 2,
+    director: 'somebody',
+    hoursFromHeist: -7 * 365 * 24,
+    title: '7 Years Before The Heist',
+    writers: ['somebody']
+  },
+  {
+    color: Color.Blue,
+    defaultNumber: 3,
+    hoursFromHeist: -5 * 24,
+    title: '5 Days Before The Heist',
+    writers: ['somebody']
+  },
+  {
+    color: Color.Violet,
+    defaultNumber: 4,
+    hoursFromHeist: -24 * 365 * 24,
+    title: '24 Years Before The Heist',
+    writers: ['somebody']
+  },
+  {
+    color: Color.Orange,
+    defaultNumber: 5,
+    hoursFromHeist: -3 * 7 * 24,
+    title: '3 Weeks Before The Heist',
+    writers: ['somebody']
+  },
+  {
+    color: Color.Red,
+    defaultNumber: 6,
+    hoursFromHeist: 12,
+    title: 'The Morning After The Heist',
+    writers: ['somebody']
+  },
+  { color: Color.Pink, defaultNumber: 7, hoursFromHeist: 6 * 30 * 24, title: '6 Months After', writers: ['somebody'] },
+  {
+    color: Color.White,
+    defaultNumber: 8,
+    hoursFromHeist: 0,
+    title: 'Finale: The Heist',
+    writers: ['somebody', 'somebody']
+  }
+];
 
 test('getSquareEmoji', () => {
   expect(getSquareEmoji(Color.Yellow)).toBe('🟨');
@@ -45,4 +109,89 @@ test('getNumberWord', () => {
   expect(getNumberWord(7)).toBe('seven');
   expect(getNumberWord(8)).toBe('eight');
   expect(getNumberWord(9)).toBe('unknown');
+});
+
+test('shuffleEpisodes', () => {
+  const shuffledEpisodes = shuffleEpisodes(episodes);
+  expect(shuffledEpisodes).toHaveLength(8);
+  expect(shuffledEpisodes[7]).toStrictEqual({
+    color: Color.White,
+    defaultNumber: 8,
+    hoursFromHeist: 0,
+    title: 'Finale: The Heist',
+    writers: ['somebody', 'somebody']
+  });
+});
+
+test('pluralize', () => {
+  expect(pluralize('word', -1)).toBe('word');
+  expect(pluralize('word', 0)).toBe('words');
+  expect(pluralize('word', 1)).toBe('word');
+  expect(pluralize('word', 2)).toBe('words');
+  expect(pluralize('word', 100)).toBe('words');
+});
+
+test('convertToTwoDigits', () => {
+  expect(convertToTwoDigits(0)).toBe('00');
+  expect(convertToTwoDigits(5)).toBe('05');
+  expect(convertToTwoDigits(10)).toBe('10');
+  expect(convertToTwoDigits(100)).toBe('100');
+});
+
+test('convertSecondsToUnits', () => {
+  expect(convertSecondsToUnits(-1)).toStrictEqual({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0
+  });
+
+  expect(convertSecondsToUnits(0)).toStrictEqual({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0
+  });
+
+  expect(convertSecondsToUnits(1)).toStrictEqual({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 1
+  });
+
+  expect(convertSecondsToUnits(60)).toStrictEqual({
+    days: 0,
+    hours: 0,
+    minutes: 1,
+    seconds: 0
+  });
+
+  expect(convertSecondsToUnits(61)).toStrictEqual({
+    days: 0,
+    hours: 0,
+    minutes: 1,
+    seconds: 1
+  });
+
+  expect(convertSecondsToUnits(3599)).toStrictEqual({
+    days: 0,
+    hours: 0,
+    minutes: 59,
+    seconds: 59
+  });
+
+  expect(convertSecondsToUnits(3600)).toStrictEqual({
+    days: 0,
+    hours: 1,
+    minutes: 0,
+    seconds: 0
+  });
+
+  expect(convertSecondsToUnits(86400)).toStrictEqual({
+    days: 1,
+    hours: 0,
+    minutes: 0,
+    seconds: 0
+  });
 });

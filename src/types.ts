@@ -17,3 +17,10 @@ export type Episode = {
   title: string;
   writers: string[];
 };
+
+export type TimeUnits = {
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
+};

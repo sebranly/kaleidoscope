@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { EPISODE_COUNT } from '../constants/general';
-import { Episode } from '../types';
-import { getDotEmoji, getNumberEmoji, getNumberWord, getSquareEmoji } from '../utils';
+import { Color, Episode } from '../types';
+import { getDotEmoji, getNumberEmoji, getNumberWord } from '../utils';
 
 export interface EpisodeBlockProps {
   episode: Episode;
@@ -22,6 +22,7 @@ const EpisodeBlock: React.FC<EpisodeBlockProps> = (props) => {
     <div className="episode-block">
       <div className={classnamesHeader}>
         {!isFirst && !isLast && <div className="episode-up">🔼</div>}
+        {isLast && <div className="episode-locked">🔒</div>}
         <>{title}</>
         {!isOneBeforeLast && !isLast && <div className="episode-down">🔽</div>}
       </div>
@@ -36,7 +37,7 @@ const EpisodeBlock: React.FC<EpisodeBlockProps> = (props) => {
         )}
 
         <div className="episode-color">
-          <b>Color:</b> {getDotEmoji(color)} {getSquareEmoji(color)} {color}
+          <b>Color:</b> {getDotEmoji(color)} {color === Color.Pink ? `brown (instead of ${color})` : color}
         </div>
         <div className="episode-number">
           <b>Episode Number:</b> {getNumberEmoji(defaultNumber)} {getNumberWord(defaultNumber)}
