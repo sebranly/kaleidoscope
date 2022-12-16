@@ -24,3 +24,8 @@ export type TimeUnits = {
   minutes: number;
   seconds: number;
 };
+
+export enum Direction {
+  Up = 'up',
+  Down = 'down'
+}

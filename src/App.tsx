@@ -12,47 +12,18 @@ import useWindowSize from 'react-use/lib/useWindowSize';
 import { CountDownTimer } from './components/CountDownTimer';
 
 function App() {
-  const [episodesList, _setEpisodesList] = React.useState<Episode[]>(shuffleEpisodes(episodes));
+  const [episodesList, setEpisodesList] = React.useState<Episode[]>(shuffleEpisodes(episodes));
 
   // Setting it to end date by default not to show the countdown timer
   const [currentUnixTime, setCurrentUnixTime] = React.useState<number>(SHOW_RELEASE_DATE_PT);
   const [copiedWatchOrder, setCopiedWatchOrder] = React.useState(false);
   const { width } = useWindowSize();
 
-  const colorCode = episodesList
-    .map((episode: Episode) => {
-      const { color } = episode;
-      return color.charAt(0).toUpperCase();
-    })
-    .join('');
-
-  const numberCode = episodesList
-    .map((episode: Episode) => {
-      const { defaultNumber } = episode;
-      return defaultNumber;
-    })
-    .join('');
-
-  const episodesSquaresEmojis = episodesList
-    .map((episode: Episode) => {
-      const { color } = episode;
-      return getSquareEmoji(color);
-    })
-    .join('');
-
-  const episodesDotsEmojis = episodesList
-    .map((episode: Episode) => {
-      const { color } = episode;
-      return getDotEmoji(color);
-    })
-    .join('');
-
-  const episodesNumbersEmojis = episodesList
-    .map((episode: Episode) => {
-      const { defaultNumber } = episode;
-      return getNumberEmoji(defaultNumber);
-    })
-    .join('');
+  const colorCode = episodesList.map((ep: Episode) => ep.color.charAt(0).toUpperCase()).join('');
+  const numberCode = episodesList.map((ep: Episode) => ep.defaultNumber).join('');
+  const episodesSquaresEmojis = episodesList.map((ep: Episode) => getSquareEmoji(ep.color)).join('');
+  const episodesDotsEmojis = episodesList.map((ep: Episode) => getDotEmoji(ep.color)).join('');
+  const episodesNumbersEmojis = episodesList.map((ep: Episode) => getNumberEmoji(ep.defaultNumber)).join('');
 
   const sharingText = `Get your unique Kaleidoscope viewing order on: ${WEBSITE_URL}\n\nMine is:\n${episodesDotsEmojis}\n${episodesSquaresEmojis}\n${episodesNumbersEmojis}\n\n`;
   const classnamesCopy = copiedWatchOrder ? 'share-button-disabled' : 'share-button-enabled';
@@ -69,6 +40,10 @@ function App() {
         console.log(error);
       });
   };
+
+  React.useEffect(() => {
+    setCopiedWatchOrder(false);
+  }, [episodesList]);
 
   React.useEffect(() => {
     onMount();
@@ -91,7 +66,9 @@ function App() {
           <div className="introduction-line">
             Created by Eric Garcia, Kaleidoscope is a{' '}
             <b>
-              <i>non-linear</i>
+              <div className="color-light-blue inline">
+                <i>non-linear</i>
+              </div>
             </b>{' '}
             8-episode show on Netflix.
           </div>
@@ -101,7 +78,9 @@ function App() {
           <div className="introduction-line">
             This webpage allows you to{' '}
             <b>
-              <i>create and share</i>
+              <div className="color-light-blue inline">
+                <i>create and share</i>
+              </div>
             </b>{' '}
             a viewing order among the 5040 viewing possibilities!
           </div>
@@ -111,12 +90,23 @@ function App() {
         <h2>Episodes Watch List</h2>
         <div className="episodes-watch-order-introduction">
           <div className="episodes-watch-order-introduction-line">
+            The following viewing order has been picked randomly
+          </div>
+          <div className="episodes-watch-order-introduction-line">
             Interact with 🔼 and 🔽 to change the order of one specific episode (except the finale)
           </div>
         </div>
         <div className="episodes-list">
           {episodesList.map((episode: Episode, index: number) => {
-            return <EpisodeBlock episode={episode} index={index} key={episode.defaultNumber} />;
+            return (
+              <EpisodeBlock
+                episode={episode}
+                index={index}
+                key={episode.defaultNumber}
+                episodesList={episodesList}
+                setEpisodesList={setEpisodesList}
+              />
+            );
           })}
         </div>
 
@@ -125,6 +115,7 @@ function App() {
           <div className="episodes-watch-order-line">{episodesDotsEmojis}</div>
           <div className="episodes-watch-order-line">{episodesSquaresEmojis}</div>
           <div className="episodes-watch-order-line">{episodesNumbersEmojis}</div>
+          <br />
           <CopyToClipboard options={{ message: '' }} text={sharingText} onCopy={() => setCopiedWatchOrder(true)}>
             <button className={`share-button ${classnamesCopy}`} disabled={copiedWatchOrder}>
               {copiedWatchOrder ? '📋 Copied to clipboard' : '🌐 Share your viewing order'}
@@ -133,8 +124,12 @@ function App() {
           <hr />
         </div>
         <div>
-          <div>Color Code: {colorCode}</div>
-          <div>Number Code: {numberCode}</div>
+          <div>
+            <b>Color Code:</b> {colorCode}
+          </div>
+          <div>
+            <b>Number Code:</b> {numberCode}
+          </div>
         </div>
       </header>
       <Footer />

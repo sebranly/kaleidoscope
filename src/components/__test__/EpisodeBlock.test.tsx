@@ -13,7 +13,10 @@ test('EpisodeBlock', () => {
     writers: ['Someone', 'Someone else']
   };
 
-  const createComponent = () => <EpisodeBlock episode={episode} index={1} />;
+  const fn = jest.fn();
+  const createComponent = () => (
+    <EpisodeBlock episode={episode} index={1} episodesList={[episode]} setEpisodesList={fn} />
+  );
 
   const { container } = render(createComponent());
   expect(container.childNodes).toMatchSnapshot();

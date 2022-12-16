@@ -2,8 +2,6 @@
 
 Live at https://sebranly.github.io/kaleidoscope/
 
-No license for now on purpose: https://choosealicense.com/no-permission/
-
 ## Development
 
 ### Setup

@@ -1,4 +1,4 @@
-import { Color, Episode } from '../../types';
+import { Color, Direction, Episode } from '../../types';
 import {
   convertSecondsToUnits,
   convertToTwoDigits,
@@ -7,7 +7,8 @@ import {
   getNumberWord,
   getSquareEmoji,
   pluralize,
-  shuffleEpisodes
+  shuffleEpisodes,
+  swapEpisodes
 } from '../index';
 
 const episodes: Episode[] = [
@@ -121,6 +122,24 @@ test('shuffleEpisodes', () => {
     title: 'Finale: The Heist',
     writers: ['somebody', 'somebody']
   });
+});
+
+test('swapEpisodes', () => {
+  const swappedEpisodes = swapEpisodes(episodes, Direction.Up, 2);
+  expect(swappedEpisodes).toHaveLength(8);
+  expect(swappedEpisodes).not.toEqual(episodes);
+
+  expect(swappedEpisodes[0]).toStrictEqual(episodes[0]);
+
+  expect(swappedEpisodes[1]).toStrictEqual(episodes[2]);
+  expect(swappedEpisodes[2]).toStrictEqual(episodes[1]);
+
+  expect(swappedEpisodes[3]).toStrictEqual(episodes[3]);
+  expect(swappedEpisodes[4]).toStrictEqual(episodes[4]);
+  expect(swappedEpisodes[5]).toStrictEqual(episodes[5]);
+  expect(swappedEpisodes[6]).toStrictEqual(episodes[6]);
+  expect(swappedEpisodes[7]).toStrictEqual(episodes[7]);
+  expect(swappedEpisodes[8]).toStrictEqual(episodes[8]);
 });
 
 test('pluralize', () => {

@@ -59,7 +59,7 @@ const episodes: Episode[] = [
     color: Color.White,
     defaultNumber: 8,
     hoursFromHeist: 0,
-    title: 'Finale: The Heist',
+    title: 'The Heist (Finale)',
     writers: [evan, josh]
   }
 ];

@@ -8,17 +8,17 @@ NodeList [
     <div
       class="episode-header bg-color-red"
     >
-      <div
-        class="episode-up"
+      <button
+        class="episode-arrow episode-up"
       >
         🔼
-      </div>
+      </button>
       Some title
-      <div
-        class="episode-down"
+      <button
+        class="episode-arrow episode-down"
       >
         🔽
-      </div>
+      </button>
     </div>
     <div
       class="episode-content"
