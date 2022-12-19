@@ -32,21 +32,22 @@ const EpisodeBlock: React.FC<EpisodeBlockProps> = (props) => {
       <div className={`episode-ribbon-number2-index${index} episode-ribbon bg-color-${color}`}/>
       <div className={`episode-ribbon-number3-index${index} episode-ribbon bg-color-${color}`}/>
       <div className={`episode-content`}>
-        <div className={'episode-header'}>
-          {!isFirst && !isLast && (
+        <div className={`episode-header`}>
+          {!isFirst && !isLast ? (
             <button className="episode-arrow episode-up" onClick={() => onClick(Direction.Up)}>
               🔼
             </button>
-          )}
+          ) : <div></div>}
           {isLast && <div className="episode-locked">🔒</div>}
           <>{title}</>
-          {!isOneBeforeLast && !isLast && (
+          {!isOneBeforeLast && !isLast ? (
             <button className="episode-arrow episode-down" onClick={() => onClick(Direction.Down)}>
               🔽
-            </button>
-          )}
+            </button>) : <div></div>
+          }
         </div>
-        {/* <div className="episode-details">
+        <div className={`episode-content-separator bg-color-${color}`}></div>
+        <div className="episode-details">
           <div className="episode-writers">
             <b>Writer{writersSuffix}:</b> {writers.join(', ')}
           </div>
@@ -58,7 +59,7 @@ const EpisodeBlock: React.FC<EpisodeBlockProps> = (props) => {
           <div className="episode-number">
             <b>Episode #{defaultNumber}</b>
           </div>
-        </div> */}
+        </div>
       </div>
     </div>
   );

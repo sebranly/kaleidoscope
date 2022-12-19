@@ -62,7 +62,9 @@ li span {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  gap: 80px;
+  align-items: center;
+  justify-content: center;
+  gap: 90px;
   margin: 100px 0;
 }
 
@@ -71,49 +73,53 @@ li span {
   height: 60px;
   position: relative;
   width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.episode-block .episode-ribbon {
+.episode-ribbon {
   position: absolute;
   z-index: 1;
   background-attachment: fixed;
 }
 
 .episode-content {
+  top: 0;
+  width: 20vw;
   position: absolute;
-  width: 100vw;
-  height: 50px;
-  padding: 0;
+  height: max-content;
+  padding: 0 10px 10px 10px;
   margin: 0;
   z-index: 100;
-  vertical-align: middle;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  
+  background-color: rgb(249, 249, 249);
+  box-shadow: 0 0 10px 0 rgb(32, 32, 32);
+  border-radius: 10px;
+  color: black;
 }
 .episode-header {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
-  text-transform: uppercase;
-  color: white;
   text-align: center;
   margin: 0;
-  padding: 5px;
-  width: 60vw;
-  /* background-color: rgba(0, 0, 0, 0.5); */
-  border-radius: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  justify-items: space-between;
+}
+.episode-content-separator{
+  height: 5px;
+  width: 100%;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+.episode-details {
+  text-align: left;
 }
 
-.episode-details {
-  position: absolute;
-  top: 50px;
-  /* background-color: rgba(0, 0, 0, 0.2); */
-  width: 60vw;
-  padding: 5px;
-  color: white;
-}
 .episode-ribbon-number2-index0 {
   left: 0;
   height: 50px;
@@ -123,10 +129,10 @@ li span {
   top: 50px;
   right: 10vw;
   width: 50px;
-  height: 360px;
+  height: 410px;
 }
 .episode-ribbon-number3-index0 {
-  top: 360px;
+  top: 410px;
   right: 0;
   width: 10vw;
   height: 50px;
@@ -138,7 +144,7 @@ li span {
   width: 80vw;
 }
 .episode-ribbon-number1-index1 {
-  top: 210px;
+  top: 225px;
   left: 0vw;
   width: 20vw;
   height: 50px;
@@ -147,7 +153,7 @@ li span {
   top: 50px;
   left: 20vw;
   width: 50px;
-  height: 210px;
+  height: 225px;
 }
 
 .episode-ribbon-number2-index2 {
@@ -192,7 +198,7 @@ li span {
   width: 80vw;
 }
 .episode-ribbon-number1-index5 {
-  top: 370px;
+  top: 380px;
   left: 0vw;
   width: 20vw;
   height: 50px;
@@ -201,7 +207,7 @@ li span {
   top: 50px;
   left: 20vw;
   width: 50px;
-  height: 370px;
+  height: 380px;
 }
 
 .episode-ribbon-number2-index6 {
@@ -231,23 +237,10 @@ li span {
   visibility: hidden;
 }
 
-/* 
-@media screen and (max-width: 1400px) {
-  .episode-block {
-    flex: 45%;
-    margin-left: 2%;
-    margin-right: 2%;
-  }
-}
-*/
 @media screen and (max-width: 700px) {
-  /* .episode-block {
-    margin-left: 4%;
-    margin-right: 4%;
-    margin-top: 2%;
-    margin-bottom: 2%;
-    flex: 90%;
-  } */
+  .episode-content {
+    width: 70vw;
+  }
 
   .episodes-watch-order {
     font-size: 24px;
