@@ -109,6 +109,7 @@ li span {
   align-items: center;
   justify-content: space-between;
   justify-items: space-between;
+  padding: 10px 0;
 }
 .episode-content-separator{
   height: 5px;
@@ -174,10 +175,10 @@ li span {
   top: 50px;
   right: 30vw;
   width: 50px;
-  height: 70px;
+  height: 225px;
 }
 .episode-ribbon-number3-index3 {
-  top: 70px;
+  top: 225px;
   right: 0;
   width: 30vw;
   height: 50px;
@@ -236,12 +237,12 @@ li span {
 .episode-ribbon-number1-index7, .episode-ribbon-number3-index7 {
   visibility: hidden;
 }
-
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 1000px) {
   .episode-content {
     width: 70vw;
   }
-
+}
+@media screen and (max-width: 700px) {
   .episodes-watch-order {
     font-size: 24px;
   }
@@ -262,21 +263,6 @@ li span {
 
   .episodes-watch-order-introduction-line {
     margin-bottom: 10px;
-  }
-}
-
-@media screen and (max-width: 400px) {
-  .episode-header {
-    padding-left: 1px;
-    padding-right: 1px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
-}
-
-@media screen and (min-width: 401px) {
-  .episode-header {
-    padding: 10px;
   }
 }
 
