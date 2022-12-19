@@ -85,7 +85,7 @@ function App() {
           recycle={false}
         />
       )}
-      <header className="App-header">
+      <section className="main">
         <h1>{WEBSITE_TITLE}</h1>
         <div className="introduction">
           <div className="introduction-line">
@@ -198,7 +198,7 @@ function App() {
             </button>
           </CopyToClipboard>
         </div>
-      </header>
+      </section>
       <Footer />
     </div>
   );

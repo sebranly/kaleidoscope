@@ -2,8 +2,8 @@
   text-align: center;
 }
 
-.App-header {
-  background-color: #282c34;
+.main {
+  background: radial-gradient(circle, #011226, #011226 50%, #011226 50%, #00050a 100%);
   min-height: 90vh;
   display: flex;
   flex-direction: column;
