@@ -249,3 +249,17 @@ li span {
 .inline-block {
   display: inline-block;
 }
+
+.share-range {
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  position: relative;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+}
+
+.share-range-text {
+  font-size: 16px;
+}

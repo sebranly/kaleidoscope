@@ -1,5 +1,12 @@
 import React from 'react';
-import { CONFETTI_COLORS, SHOW_RELEASE_DATE_PT, TIME_API_URL, WEBSITE_TITLE, WEBSITE_URL } from './constants/general';
+import {
+  CONFETTI_COLORS,
+  EPISODE_COUNT,
+  SHOW_RELEASE_DATE_PT,
+  TIME_API_URL,
+  WEBSITE_TITLE,
+  WEBSITE_URL
+} from './constants/general';
 import { Footer } from './components/Footer';
 import { episodes } from './data';
 import './App.css';
@@ -20,6 +27,7 @@ import useWindowSize from 'react-use/lib/useWindowSize';
 import { CountDownTimer } from './components/CountDownTimer';
 
 function App() {
+  const [shareableEpisodes, setShareableEpisodes] = React.useState(EPISODE_COUNT);
   const [episodesList, setEpisodesList] = React.useState<Episode[]>(shuffleEpisodes(episodes));
 
   // Setting it to end date by default not to show the countdown timer
@@ -27,11 +35,30 @@ function App() {
   const [copiedWatchOrder, setCopiedWatchOrder] = React.useState(false);
   const { width } = useWindowSize();
 
-  const colorCode = episodesList.map((ep: Episode) => ep.color.charAt(0).toUpperCase()).join('');
-  const numberCode = episodesList.map((ep: Episode) => ep.defaultNumber).join('');
-  const episodesSquaresEmojis = episodesList.map((ep: Episode) => getSquareEmoji(ep.color)).join('');
-  const episodesDotsEmojis = episodesList.map((ep: Episode) => getDotEmoji(ep.color)).join('');
-  const episodesNumbersEmojis = episodesList.map((ep: Episode) => getNumberEmoji(ep.defaultNumber)).join('');
+  const colorCode = episodesList
+    .slice(0, shareableEpisodes)
+    .map((ep: Episode) => ep.color.charAt(0).toUpperCase())
+    .join('');
+
+  const numberCode = episodesList
+    .slice(0, shareableEpisodes)
+    .map((ep: Episode) => ep.defaultNumber)
+    .join('');
+
+  const episodesSquaresEmojis = episodesList
+    .slice(0, shareableEpisodes)
+    .map((ep: Episode) => getSquareEmoji(ep.color))
+    .join('');
+
+  const episodesDotsEmojis = episodesList
+    .slice(0, shareableEpisodes)
+    .map((ep: Episode) => getDotEmoji(ep.color))
+    .join('');
+
+  const episodesNumbersEmojis = episodesList
+    .slice(0, shareableEpisodes)
+    .map((ep: Episode) => getNumberEmoji(ep.defaultNumber))
+    .join('');
 
   const sharingText = `Get your unique Kaleidoscope viewing order on: ${WEBSITE_URL}\n\nMine is:\n${episodesDotsEmojis}\n${episodesSquaresEmojis}\n${episodesNumbersEmojis}\n\n`;
   const classnamesCopy = copiedWatchOrder ? 'button-disabled' : 'button-enabled';
@@ -51,7 +78,7 @@ function App() {
 
   React.useEffect(() => {
     setCopiedWatchOrder(false);
-  }, [episodesList]);
+  }, [episodesList, shareableEpisodes]);
 
   React.useEffect(() => {
     onMount();
@@ -149,6 +176,18 @@ function App() {
 
         <h2>Your Unique Viewing Order</h2>
         <div className="episodes-watch-order">
+          <div className="share-range-text">{`Number of episodes to share: ${shareableEpisodes}`}</div>
+          <div className="share-range">
+            <input
+              min="1"
+              max={EPISODE_COUNT}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                setShareableEpisodes(Number(e.target.value));
+              }}
+              value={shareableEpisodes}
+              type="range"
+            />
+          </div>
           <div className="episodes-watch-order-line">{episodesDotsEmojis}</div>
           <div className="episodes-watch-order-line">{episodesSquaresEmojis}</div>
           <div className="episodes-watch-order-line">{episodesNumbersEmojis}</div>
