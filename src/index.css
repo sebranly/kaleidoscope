@@ -115,6 +115,21 @@ li span {
   }
 }
 
+@media screen and (max-width: 400px) {
+  .episode-header {
+    padding-left: 1px;
+    padding-right: 1px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
+
+@media screen and (min-width: 401px) {
+  .episode-header {
+    padding: 10px;
+  }
+}
+
 @media screen and (min-width: 701px) {
   .episodes-watch-order {
     font-size: 30px;
@@ -129,7 +144,6 @@ li span {
   font-weight: bold;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  padding: 10px;
 }
 
 .episode-header > div {
@@ -202,18 +216,36 @@ li span {
   display: inline;
 }
 
-.share-button {
+.basic-button {
   font-size: 14px;
-  padding: 5px;
+  padding: 10px;
   color: white;
   border-radius: 10px;
   font-weight: bold;
 }
 
-.share-button-enabled {
-  background-color: #1f79e8;
+.sort-button {
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
-.share-button-disabled {
+.buttons {
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.button-enabled {
+  background-color: #1f79e8;
+  cursor: pointer;
+}
+
+.button-disabled {
   background-color: gray;
+  cursor: not-allowed;
+}
+
+.inline-block {
+  display: inline-block;
 }
