@@ -5,7 +5,15 @@ import { episodes } from './data';
 import './App.css';
 import { Episode } from './types';
 import { EpisodeBlock } from './components/EpisodeBlock';
-import { getDotEmoji, getNumberEmoji, getSquareEmoji, shuffleEpisodes } from './utils';
+import {
+  getDotEmoji,
+  getNumberEmoji,
+  getSquareEmoji,
+  reverseEpisodes,
+  sortToChronologicalEpisodes,
+  sortToDefaultEpisodes,
+  shuffleEpisodes
+} from './utils';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Confetti from 'react-confetti';
 import useWindowSize from 'react-use/lib/useWindowSize';
@@ -26,7 +34,7 @@ function App() {
   const episodesNumbersEmojis = episodesList.map((ep: Episode) => getNumberEmoji(ep.defaultNumber)).join('');
 
   const sharingText = `Get your unique Kaleidoscope viewing order on: ${WEBSITE_URL}\n\nMine is:\n${episodesDotsEmojis}\n${episodesSquaresEmojis}\n${episodesNumbersEmojis}\n\n`;
-  const classnamesCopy = copiedWatchOrder ? 'share-button-disabled' : 'share-button-enabled';
+  const classnamesCopy = copiedWatchOrder ? 'button-disabled' : 'button-enabled';
   const unixDiffSeconds = SHOW_RELEASE_DATE_PT - currentUnixTime;
 
   const onMount = async () => {
@@ -90,7 +98,36 @@ function App() {
         <h2>Episodes Watch List</h2>
         <div className="episodes-watch-order-introduction">
           <div className="episodes-watch-order-introduction-line">
-            The following viewing order has been picked randomly
+            A viewing order has been selected randomly for you
+          </div>
+          <div className="episodes-watch-order-introduction-line">
+            The buttons below allow you to select a different sort
+          </div>
+          <div className="inline-block buttons">
+            <button
+              className="basic-button sort-button button-enabled"
+              onClick={() => setEpisodesList(sortToDefaultEpisodes(episodesList))}
+            >
+              🔢 Default
+            </button>
+            <button
+              className="basic-button sort-button button-enabled"
+              onClick={() => setEpisodesList(sortToChronologicalEpisodes(episodesList))}
+            >
+              🕒 Chronological
+            </button>
+            <button
+              className="basic-button sort-button button-enabled"
+              onClick={() => setEpisodesList(shuffleEpisodes(episodesList))}
+            >
+              🔀 Shuffle
+            </button>
+            <button
+              className="basic-button sort-button button-enabled"
+              onClick={() => setEpisodesList(reverseEpisodes(episodesList))}
+            >
+              🔄 Reverse
+            </button>
           </div>
           <div className="episodes-watch-order-introduction-line">
             Interact with 🔼 and 🔽 to change the order of one specific episode (except the finale)
@@ -117,7 +154,7 @@ function App() {
           <div className="episodes-watch-order-line">{episodesNumbersEmojis}</div>
           <br />
           <CopyToClipboard options={{ message: '' }} text={sharingText} onCopy={() => setCopiedWatchOrder(true)}>
-            <button className={`share-button ${classnamesCopy}`} disabled={copiedWatchOrder}>
+            <button className={`basic-button ${classnamesCopy}`} disabled={copiedWatchOrder}>
               {copiedWatchOrder ? '📋 Copied to clipboard' : '🌐 Share your viewing order'}
             </button>
           </CopyToClipboard>

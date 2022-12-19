@@ -2,12 +2,16 @@ import { Color, Direction, Episode } from '../../types';
 import {
   convertSecondsToUnits,
   convertToTwoDigits,
+  filterNonLinearEpisodes,
   getDotEmoji,
   getNumberEmoji,
   getNumberWord,
   getSquareEmoji,
   pluralize,
+  reverseEpisodes,
   shuffleEpisodes,
+  sortToChronologicalEpisodes,
+  sortToDefaultEpisodes,
   swapEpisodes
 } from '../index';
 
@@ -140,6 +144,53 @@ test('swapEpisodes', () => {
   expect(swappedEpisodes[6]).toStrictEqual(episodes[6]);
   expect(swappedEpisodes[7]).toStrictEqual(episodes[7]);
   expect(swappedEpisodes[8]).toStrictEqual(episodes[8]);
+});
+
+test('filterNonLinearEpisodes', () => {
+  const nonLinearEpisodes = filterNonLinearEpisodes(episodes);
+  expect(nonLinearEpisodes).toHaveLength(7);
+
+  expect(nonLinearEpisodes[0]).toStrictEqual(episodes[0]);
+  expect(nonLinearEpisodes[1]).toStrictEqual(episodes[1]);
+  expect(nonLinearEpisodes[2]).toStrictEqual(episodes[2]);
+  expect(nonLinearEpisodes[3]).toStrictEqual(episodes[3]);
+  expect(nonLinearEpisodes[4]).toStrictEqual(episodes[4]);
+  expect(nonLinearEpisodes[5]).toStrictEqual(episodes[5]);
+  expect(nonLinearEpisodes[6]).toStrictEqual(episodes[6]);
+});
+
+test('reverseEpisodes', () => {
+  const reversedEpisodes = reverseEpisodes(episodes);
+  expect(reversedEpisodes).toHaveLength(8);
+
+  expect(reversedEpisodes[0]).toStrictEqual(episodes[6]);
+  expect(reversedEpisodes[1]).toStrictEqual(episodes[5]);
+  expect(reversedEpisodes[2]).toStrictEqual(episodes[4]);
+  expect(reversedEpisodes[3]).toStrictEqual(episodes[3]);
+  expect(reversedEpisodes[4]).toStrictEqual(episodes[2]);
+  expect(reversedEpisodes[5]).toStrictEqual(episodes[1]);
+  expect(reversedEpisodes[6]).toStrictEqual(episodes[0]);
+  expect(reversedEpisodes[7]).toStrictEqual(episodes[7]);
+});
+
+test('sortToDefaultEpisodes', () => {
+  const defaultEpisodes = sortToDefaultEpisodes(episodes);
+
+  expect(defaultEpisodes).toStrictEqual(episodes);
+});
+
+test('sortToChronologicalEpisodes', () => {
+  const chronologicalEpisodes = sortToChronologicalEpisodes(episodes);
+  expect(chronologicalEpisodes).toHaveLength(8);
+
+  expect(chronologicalEpisodes[0]).toStrictEqual(episodes[3]);
+  expect(chronologicalEpisodes[1]).toStrictEqual(episodes[1]);
+  expect(chronologicalEpisodes[2]).toStrictEqual(episodes[0]);
+  expect(chronologicalEpisodes[3]).toStrictEqual(episodes[4]);
+  expect(chronologicalEpisodes[4]).toStrictEqual(episodes[2]);
+  expect(chronologicalEpisodes[5]).toStrictEqual(episodes[5]);
+  expect(chronologicalEpisodes[6]).toStrictEqual(episodes[6]);
+  expect(chronologicalEpisodes[7]).toStrictEqual(episodes[7]);
 });
 
 test('pluralize', () => {

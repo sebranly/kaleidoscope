@@ -95,27 +95,56 @@ const getNumberWord = (nb: number) => {
   }
 };
 
-const shuffleEpisodes = (episodes: Episode[]) => {
+const filterNonLinearEpisodes = (episodes: Episode[]) => {
   // The finale has to be watched last
-  const randomOrderEpisodes = episodes.slice(0, EPISODE_COUNT - 1);
-  return [...randomOrderEpisodes.sort(() => Math.random() - 0.5), episodes[EPISODE_COUNT - 1]];
+  const nonLinearEpisodes = episodes.slice(0, EPISODE_COUNT - 1);
+
+  return nonLinearEpisodes;
+};
+
+const shuffleEpisodes = (episodes: Episode[]) => {
+  const nonLinearEpisodes = filterNonLinearEpisodes(episodes);
+  const shuffledEpisodes = nonLinearEpisodes.sort(() => Math.random() - 0.5);
+
+  return [...shuffledEpisodes, episodes[EPISODE_COUNT - 1]];
+};
+
+const sortToDefaultEpisodes = (episodes: Episode[]) => {
+  const nonLinearEpisodes = filterNonLinearEpisodes(episodes);
+  const defaultEpisodes = nonLinearEpisodes.sort((ep1: Episode, ep2: Episode) => ep1.defaultNumber - ep2.defaultNumber);
+
+  return [...defaultEpisodes, episodes[EPISODE_COUNT - 1]];
+};
+
+const sortToChronologicalEpisodes = (episodes: Episode[]) => {
+  const nonLinearEpisodes = filterNonLinearEpisodes(episodes);
+  const chronologicalEpisodes = nonLinearEpisodes.sort(
+    (ep1: Episode, ep2: Episode) => ep1.hoursFromHeist - ep2.hoursFromHeist
+  );
+
+  return [...chronologicalEpisodes, episodes[EPISODE_COUNT - 1]];
+};
+
+const reverseEpisodes = (episodes: Episode[]) => {
+  const nonLinearEpisodes = filterNonLinearEpisodes(episodes);
+  const reversedEpisodes = nonLinearEpisodes.reverse();
+
+  return [...reversedEpisodes, episodes[EPISODE_COUNT - 1]];
 };
 
 const swapEpisodes = (episodes: Episode[], direction: Direction, index: number) => {
-  // The finale has to be watched last
-  const firstEpisodes = episodes.slice(0, EPISODE_COUNT - 1);
-
   const cannotGoUp = direction === Direction.Up && index <= 0;
   const cannotGoDown = direction === Direction.Down && index >= EPISODE_COUNT - 2;
 
   if (cannotGoUp || cannotGoDown) return episodes;
+  const nonLinearEpisodes = filterNonLinearEpisodes(episodes);
 
   const delta = direction === Direction.Up ? -1 : 1;
-  const episodeTemp = firstEpisodes[index];
-  firstEpisodes[index] = firstEpisodes[index + delta];
-  firstEpisodes[index + delta] = episodeTemp;
+  const episodeTemp = nonLinearEpisodes[index];
+  nonLinearEpisodes[index] = nonLinearEpisodes[index + delta];
+  nonLinearEpisodes[index + delta] = episodeTemp;
 
-  return [...firstEpisodes, episodes[EPISODE_COUNT - 1]];
+  return [...nonLinearEpisodes, episodes[EPISODE_COUNT - 1]];
 };
 
 const pluralize = (str: string, nb: number) => {
@@ -155,11 +184,15 @@ const convertToTwoDigits = (nb: number) => {
 export {
   convertSecondsToUnits,
   convertToTwoDigits,
+  filterNonLinearEpisodes,
   getDotEmoji,
   getNumberEmoji,
   getNumberWord,
   getSquareEmoji,
   pluralize,
+  reverseEpisodes,
   shuffleEpisodes,
+  sortToChronologicalEpisodes,
+  sortToDefaultEpisodes,
   swapEpisodes
 };
