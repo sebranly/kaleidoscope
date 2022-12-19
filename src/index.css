@@ -161,6 +161,8 @@ li span {
   font-size: 20px;
   vertical-align: middle;
   line-height: 20px;
+  padding: 0px;
+  margin: 2px;
 }
 
 .episode-up {
@@ -232,7 +234,7 @@ li span {
 }
 
 .buttons {
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   margin-top: 5px;
 }
 
@@ -248,4 +250,22 @@ li span {
 
 .inline-block {
   display: inline-block;
+}
+
+.share-range {
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  position: relative;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+}
+
+.share-range-text {
+  font-size: 16px;
+}
+
+.link-netflix {
+  color: white;
 }
