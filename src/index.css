@@ -234,7 +234,7 @@ li span {
 }
 
 .buttons {
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   margin-top: 5px;
 }
 
@@ -264,4 +264,8 @@ li span {
 
 .share-range-text {
   font-size: 16px;
+}
+
+.link-netflix {
+  color: white;
 }

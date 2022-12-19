@@ -35,16 +35,6 @@ function App() {
   const [copiedWatchOrder, setCopiedWatchOrder] = React.useState(false);
   const { width } = useWindowSize();
 
-  const colorCode = episodesList
-    .slice(0, shareableEpisodes)
-    .map((ep: Episode) => ep.color.charAt(0).toUpperCase())
-    .join('');
-
-  const numberCode = episodesList
-    .slice(0, shareableEpisodes)
-    .map((ep: Episode) => ep.defaultNumber)
-    .join('');
-
   const episodesSquaresEmojis = episodesList
     .slice(0, shareableEpisodes)
     .map((ep: Episode) => getSquareEmoji(ep.color))
@@ -105,7 +95,17 @@ function App() {
                 <i>non-linear</i>
               </div>
             </b>{' '}
-            8-episode show on Netflix.
+            8-episode show on{' '}
+            <a
+              className="link-netflix"
+              href="https://www.netflix.com/tudum/articles/kaleidoscope-release-date-photos-cast"
+              rel="noopener noreferrer"
+              title="Official Netflix article explaining what Kaleidoscope is"
+              target="_blank"
+            >
+              Netflix
+            </a>
+            .
           </div>
           <div className="introduction-line">
             The first 7 episodes can be watched in any order. Then the finale unlocks.
@@ -197,15 +197,6 @@ function App() {
               {copiedWatchOrder ? '📋 Copied to clipboard' : '🌐 Share your viewing order'}
             </button>
           </CopyToClipboard>
-          <hr />
-        </div>
-        <div>
-          <div>
-            <b>Color Code:</b> {colorCode}
-          </div>
-          <div>
-            <b>Number Code:</b> {numberCode}
-          </div>
         </div>
       </header>
       <Footer />
