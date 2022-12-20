@@ -6,7 +6,7 @@ NodeList [
     class="episode-block"
   >
     <div
-      class="episode-header bg-color-red"
+      class="episode-header"
     >
       <button
         class="episode-arrow episode-up"
@@ -21,40 +21,29 @@ NodeList [
       </button>
     </div>
     <div
+      class="episode-content-separator bg-color-red"
+    />
+    <div
       class="episode-content"
     >
       <div
         class="episode-writers"
       >
         <b>
-          Writer
-          s
+          Writers
           :
         </b>
          
         Someone, Someone else
       </div>
       <div
-        class="episode-color"
-      >
-        <b>
-          Color:
-        </b>
-         
-        🔴
-         
-        red
-      </div>
-      <div
         class="episode-number"
       >
         <b>
-          Episode Number:
+          Episode
         </b>
          
-        1️⃣
-         
-        one
+        1
       </div>
     </div>
   </div>,

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { EPISODE_COUNT } from '../constants/general';
-import { Color, Direction, Episode } from '../types';
-import { getDotEmoji, getNumberEmoji, getNumberWord, swapEpisodes } from '../utils';
+import { Direction, Episode } from '../types';
+import { pluralize, swapEpisodes } from '../utils';
 
 export interface EpisodeBlockProps {
   episode: Episode;
@@ -14,8 +14,7 @@ const EpisodeBlock: React.FC<EpisodeBlockProps> = (props) => {
   const { episode, episodesList, index, setEpisodesList } = props;
   const { color, defaultNumber, director, title, writers } = episode;
 
-  const classnamesHeader = `episode-header bg-color-${color}`;
-  const writersSuffix = writers.length > 1 ? 's' : '';
+  const writersCopy = pluralize('Writer', writers.length);
   const isFirst = index === 0;
   const isOneBeforeLast = index === EPISODE_COUNT - 2;
   const isLast = index === EPISODE_COUNT - 1;
@@ -28,7 +27,7 @@ const EpisodeBlock: React.FC<EpisodeBlockProps> = (props) => {
 
   return (
     <div className="episode-block">
-      <div className={classnamesHeader}>
+      <div className="episode-header">
         {!isFirst && !isLast && (
           <button className="episode-arrow episode-up" onClick={() => onClick(Direction.Up)}>
             🔼
@@ -42,21 +41,18 @@ const EpisodeBlock: React.FC<EpisodeBlockProps> = (props) => {
           </button>
         )}
       </div>
+      <div className={`episode-content-separator bg-color-${color}`}></div>
       <div className="episode-content">
         <div className="episode-writers">
-          <b>Writer{writersSuffix}:</b> {writers.join(', ')}
+          <b>{writersCopy}:</b> {writers.join(', ')}
         </div>
         {director && (
           <div className="episode-director">
             <b>Director:</b> {director}
           </div>
         )}
-
-        <div className="episode-color">
-          <b>Color:</b> {getDotEmoji(color)} {color === Color.Pink ? `brown (instead of ${color})` : color}
-        </div>
         <div className="episode-number">
-          <b>Episode Number:</b> {getNumberEmoji(defaultNumber)} {getNumberWord(defaultNumber)}
+          <b>Episode</b> {defaultNumber}
         </div>
       </div>
     </div>

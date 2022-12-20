@@ -72,29 +72,6 @@ const getNumberEmoji = (nb: number) => {
   }
 };
 
-const getNumberWord = (nb: number) => {
-  switch (nb) {
-    case 1:
-      return 'one';
-    case 2:
-      return 'two';
-    case 3:
-      return 'three';
-    case 4:
-      return 'four';
-    case 5:
-      return 'five';
-    case 6:
-      return 'six';
-    case 7:
-      return 'seven';
-    case 8:
-      return 'eight';
-    default:
-      return 'unknown';
-  }
-};
-
 const filterNonLinearEpisodes = (episodes: Episode[]) => {
   // The finale has to be watched last
   const nonLinearEpisodes = episodes.slice(0, EPISODE_COUNT - 1);
@@ -187,7 +164,6 @@ export {
   filterNonLinearEpisodes,
   getDotEmoji,
   getNumberEmoji,
-  getNumberWord,
   getSquareEmoji,
   pluralize,
   reverseEpisodes,
