@@ -6,55 +6,57 @@ NodeList [
     class="episode-block"
   >
     <div
-      class="episode-header bg-color-red"
-    >
-      <button
-        class="episode-arrow episode-up"
-      >
-        🔼
-      </button>
-      Some title
-      <button
-        class="episode-arrow episode-down"
-      >
-        🔽
-      </button>
-    </div>
+      class="episode-ribbon-number1-index1 episode-ribbon bg-color-red"
+    />
+    <div
+      class="episode-ribbon-number2-index1 episode-ribbon bg-color-red"
+    />
+    <div
+      class="episode-ribbon-number3-index1 episode-ribbon bg-color-red"
+    />
     <div
       class="episode-content"
     >
       <div
-        class="episode-writers"
+        class="episode-header"
       >
-        <b>
-          Writer
-          s
-          :
-        </b>
-         
-        Someone, Someone else
+        <button
+          class="episode-arrow episode-up"
+        >
+          🔼
+        </button>
+        Some title
+        <button
+          class="episode-arrow episode-down"
+        >
+          🔽
+        </button>
       </div>
       <div
-        class="episode-color"
-      >
-        <b>
-          Color:
-        </b>
-         
-        🔴
-         
-        red
-      </div>
+        class="episode-content-separator bg-color-red"
+      />
       <div
-        class="episode-number"
+        class="episode-details"
       >
-        <b>
-          Episode Number:
-        </b>
-         
-        1️⃣
-         
-        one
+        <div
+          class="episode-writers"
+        >
+          <b>
+            Writer
+            s
+            :
+          </b>
+           
+          Someone, Someone else
+        </div>
+        <div
+          class="episode-number"
+        >
+          <b>
+            Episode #
+            1
+          </b>
+        </div>
       </div>
     </div>
   </div>,
