@@ -49,12 +49,22 @@ NodeList [
           Someone, Someone else
         </div>
         <div
+          class="episode-director"
+        >
+          <b>
+            Director:
+          </b>
+           
+          TBA
+        </div>
+        <div
           class="episode-number"
         >
           <b>
-            Episode #
-            1
+            Episode:
           </b>
+           #
+          1
         </div>
       </div>
     </div>

@@ -63,7 +63,14 @@ const episodes: Episode[] = [
     title: 'The Morning After The Heist',
     writers: ['somebody']
   },
-  { color: Color.Pink, defaultNumber: 7, director: 'TBA', hoursFromHeist: 6 * 30 * 24, title: '6 Months After', writers: ['somebody'] },
+  {
+    color: Color.Pink,
+    defaultNumber: 7,
+    director: 'TBA',
+    hoursFromHeist: 6 * 30 * 24,
+    title: '6 Months After',
+    writers: ['somebody']
+  },
   {
     color: Color.White,
     defaultNumber: 8,

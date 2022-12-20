@@ -33,13 +33,12 @@ const EpisodeBlock: React.FC<EpisodeBlockProps> = (props) => {
       <div className={`episode-ribbon-number3-index${index} episode-ribbon ${bgColor}`} />
       <div className={`episode-content`}>
         <div className={`episode-header`}>
-          {!isFirst && !isLast ? (
+          {!isFirst && !isLast && (
             <button className="episode-arrow episode-up" onClick={() => onClick(Direction.Up)}>
               🔼
             </button>
-          ) : (
-            <div></div>
           )}
+          {isFirst && <div></div>}
           {isLast && <div className="episode-locked">🔒</div>}
           <>{title}</>
           {!isOneBeforeLast && !isLast ? (
@@ -61,7 +60,7 @@ const EpisodeBlock: React.FC<EpisodeBlockProps> = (props) => {
             </div>
           )}
           <div className="episode-number">
-            <b>Episode #{defaultNumber}</b>
+            <b>Episode:</b> #{defaultNumber}
           </div>
         </div>
       </div>
