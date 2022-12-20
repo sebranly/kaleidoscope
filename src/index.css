@@ -303,6 +303,18 @@ li span {
   h1 {
     font-size: 30px;
   }
+  
+  /* TBD */
+  .episode-header {
+    padding: 10px;
+  }
+}
+
+/* TBD */
+@media screen and (min-width: 401px) {
+  .episode-header {
+    padding: 10px;
+  }
 }
 
 @media screen and (min-width: 701px) {
@@ -344,6 +356,12 @@ li span {
   cursor: pointer;
 }
 
+/* TBD */
+.episode-content {
+  padding: 10px;
+  text-align: left;
+}
+
 .bg-color-yellow {
   background-image: linear-gradient(45deg, yellow 0%, gold 100%);
 }
@@ -365,7 +383,6 @@ li span {
 
 .bg-color-orange {
   background-image: linear-gradient(45deg, orange 0%, orangered 100%);
-  color: white;
 }
 
 .bg-color-red {
@@ -375,12 +392,10 @@ li span {
 
 .bg-color-pink {
   background-image: linear-gradient(45deg, pink 0%, rgb(150, 75, 0) 100%);
-  color: white;
 }
 
 .bg-color-white {
   background-image: linear-gradient(45deg, white 0%, rgb(223, 223, 223) 100%);
-  color: black;
 }
 
 .episodes-emoji {
@@ -443,4 +458,12 @@ li span {
 
 .link-netflix {
   color: white;
+}
+
+.episode-content-separator {
+  height: 5px;
+  width: 95%;
+  margin: 0 auto;
+  border-radius: 10px;
+  box-shadow: 0 0 2px 0 rgb(32 32 32);
 }

@@ -15,57 +15,29 @@ NodeList [
       class="episode-ribbon-number3-index1 episode-ribbon bg-color-red"
     />
     <div
+      class="episode-content-separator bg-color-red"
+    />
+    <div
       class="episode-content"
     >
       <div
         class="episode-header"
       >
-        <button
-          class="episode-arrow episode-up"
-        >
-          🔼
-        </button>
-        Some title
-        <button
-          class="episode-arrow episode-down"
-        >
-          🔽
-        </button>
+        <b>
+          Writers
+          :
+        </b>
+         
+        Someone, Someone else
       </div>
       <div
-        class="episode-content-separator bg-color-red"
-      />
-      <div
-        class="episode-details"
+        class="episode-number"
       >
-        <div
-          class="episode-writers"
-        >
-          <b>
-            Writers
-            :
-          </b>
-           
-          Someone, Someone else
-        </div>
-        <div
-          class="episode-director"
-        >
-          <b>
-            Director:
-          </b>
-           
-          TBA
-        </div>
-        <div
-          class="episode-number"
-        >
-          <b>
-            Episode:
-          </b>
-           #
-          1
-        </div>
+        <b>
+          Episode
+        </b>
+         
+        1
       </div>
     </div>
   </div>,
