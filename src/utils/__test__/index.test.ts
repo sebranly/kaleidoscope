@@ -34,6 +34,7 @@ const episodes: Episode[] = [
   {
     color: Color.Blue,
     defaultNumber: 3,
+    director: 'TBA',
     hoursFromHeist: -5 * 24,
     title: '5 Days Before The Heist',
     writers: ['somebody']
@@ -41,6 +42,7 @@ const episodes: Episode[] = [
   {
     color: Color.Violet,
     defaultNumber: 4,
+    director: 'TBA',
     hoursFromHeist: -24 * 365 * 24,
     title: '24 Years Before The Heist',
     writers: ['somebody']
@@ -48,6 +50,7 @@ const episodes: Episode[] = [
   {
     color: Color.Orange,
     defaultNumber: 5,
+    director: 'TBA',
     hoursFromHeist: -3 * 7 * 24,
     title: '3 Weeks Before The Heist',
     writers: ['somebody']
@@ -55,14 +58,23 @@ const episodes: Episode[] = [
   {
     color: Color.Red,
     defaultNumber: 6,
+    director: 'TBA',
     hoursFromHeist: 12,
     title: 'The Morning After The Heist',
     writers: ['somebody']
   },
-  { color: Color.Pink, defaultNumber: 7, hoursFromHeist: 6 * 30 * 24, title: '6 Months After', writers: ['somebody'] },
+  {
+    color: Color.Pink,
+    defaultNumber: 7,
+    director: 'TBA',
+    hoursFromHeist: 6 * 30 * 24,
+    title: '6 Months After',
+    writers: ['somebody']
+  },
   {
     color: Color.White,
     defaultNumber: 8,
+    director: 'TBA',
     hoursFromHeist: 0,
     title: 'Finale: The Heist',
     writers: ['somebody', 'somebody']
@@ -109,6 +121,7 @@ test('shuffleEpisodes', () => {
   expect(shuffledEpisodes[7]).toStrictEqual({
     color: Color.White,
     defaultNumber: 8,
+    director: 'TBA',
     hoursFromHeist: 0,
     title: 'Finale: The Heist',
     writers: ['somebody', 'somebody']
