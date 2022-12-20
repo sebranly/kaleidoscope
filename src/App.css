@@ -2,7 +2,7 @@
   text-align: center;
 }
 
-.App-header {
+.main {
   background: radial-gradient(circle, #011226, #011226 50%, #011226 50%, #00050a 100%);
   min-height: 90vh;
   display: flex;

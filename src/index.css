@@ -6,13 +6,23 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+@font-face {
+  font-family: "RealityHyperRegular";
+  src: local("RealityHyperRegular"),
+   url("./fonts/reality-hyper-regular/Reality\ Hyper\ Regular.ttf") format("truetype");
+  font-weight: bold;
+  }
+
 code {
   color: white;
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
 h1 {
-  color: #209cee;
+  color: #ffffff;
+  text-shadow: 2px 2px 4px #000000;
+  font-family: "RealityHyperRegular";
+  font-size: 50px;
 }
 
 h2 {
@@ -266,6 +276,13 @@ li span {
   }
 }
 
+
+@media screen and (max-width: 400px) {
+  h1 {
+    font-size: 30px;
+  }
+}
+
 @media screen and (min-width: 701px) {
   .episodes-watch-order {
     font-size: 30px;
@@ -371,11 +388,17 @@ li span {
 .button-enabled {
   background-color: #1f79e8;
   cursor: pointer;
+  border: none;
+}
+
+.button-enabled:hover {
+  background-color: #499bff;
 }
 
 .button-disabled {
   background-color: gray;
   cursor: not-allowed;
+  border: none;
 }
 
 .inline-block {
