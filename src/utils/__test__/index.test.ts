@@ -5,7 +5,6 @@ import {
   filterNonLinearEpisodes,
   getDotEmoji,
   getNumberEmoji,
-  getNumberWord,
   getSquareEmoji,
   pluralize,
   reverseEpisodes,
@@ -102,18 +101,6 @@ test('getNumberEmoji', () => {
   expect(getNumberEmoji(7)).toBe('7️⃣');
   expect(getNumberEmoji(8)).toBe('8️⃣');
   expect(getNumberEmoji(9)).toBe('#️⃣');
-});
-
-test('getNumberWord', () => {
-  expect(getNumberWord(1)).toBe('one');
-  expect(getNumberWord(2)).toBe('two');
-  expect(getNumberWord(3)).toBe('three');
-  expect(getNumberWord(4)).toBe('four');
-  expect(getNumberWord(5)).toBe('five');
-  expect(getNumberWord(6)).toBe('six');
-  expect(getNumberWord(7)).toBe('seven');
-  expect(getNumberWord(8)).toBe('eight');
-  expect(getNumberWord(9)).toBe('unknown');
 });
 
 test('shuffleEpisodes', () => {

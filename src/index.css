@@ -7,11 +7,10 @@ body {
 }
 
 @font-face {
-  font-family: "RealityHyperRegular";
-  src: local("RealityHyperRegular"),
-   url("./fonts/reality-hyper-regular/Reality\ Hyper\ Regular.ttf") format("truetype");
+  font-family: 'RealityHyperRegular';
+  src: local('RealityHyperRegular'), url('./fonts/reality-hyper-regular/Reality\ Hyper\ Regular.ttf') format('truetype');
   font-weight: bold;
-  }
+}
 
 code {
   color: white;
@@ -21,7 +20,7 @@ code {
 h1 {
   color: #ffffff;
   text-shadow: 2px 2px 4px #000000;
-  font-family: "RealityHyperRegular";
+  font-family: 'RealityHyperRegular';
   font-size: 50px;
 }
 
@@ -129,6 +128,7 @@ li span {
   h1 {
     font-size: 30px;
   }
+
   .episode-header {
     padding: 10px;
   }
@@ -187,42 +187,43 @@ li span {
 
 .episode-content {
   padding: 10px;
+  text-align: left;
 }
 
 .bg-color-yellow {
-  background-color: #eeff00;
+  background-image: linear-gradient(45deg, yellow 0%, gold 100%);
 }
 
 .bg-color-green {
-  background-color: #1cc11c;
+  background-image: linear-gradient(45deg, green 0%, limegreen 100%);
   color: white;
 }
 
 .bg-color-blue {
-  background-color: #0f0fd9;
+  background-image: linear-gradient(45deg, blue 0%, skyblue 100%);
   color: white;
 }
 
 .bg-color-violet {
-  background-color: #690169;
+  background-image: linear-gradient(45deg, violet 0%, purple 100%);
   color: white;
 }
 
 .bg-color-orange {
-  background-color: #ffad14;
+  background-image: linear-gradient(45deg, orange 0%, orangered 100%);
 }
 
 .bg-color-red {
-  background-color: #ff2121;
+  background-image: linear-gradient(45deg, red 0%, crimson 100%);
   color: white;
 }
 
 .bg-color-pink {
-  background: linear-gradient(110deg, #ff9dad 45%, #9a4d00 55%);
+  background-image: linear-gradient(45deg, pink 0%, rgb(150, 75, 0) 100%);
 }
 
 .bg-color-white {
-  background-color: white;
+  background-image: linear-gradient(45deg, white 0%, rgb(223, 223, 223) 100%);
 }
 
 .episodes-emoji {
@@ -285,4 +286,12 @@ li span {
 
 .link-netflix {
   color: white;
+}
+
+.episode-content-separator {
+  height: 7px;
+  width: 95%;
+  margin: 0 auto;
+  border-radius: 10px;
+  box-shadow: 0 0 2px 0 rgb(32 32 32);
 }
