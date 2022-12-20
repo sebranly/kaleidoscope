@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { EPISODE_COUNT } from '../constants/general';
-import { Color, Direction, Episode } from '../types';
-import { getDotEmoji, getNumberEmoji, getNumberWord, swapEpisodes } from '../utils';
+import { Direction, Episode } from '../types';
+import { swapEpisodes } from '../utils';
 
 export interface EpisodeBlockProps {
   episode: Episode;
@@ -14,7 +14,6 @@ const EpisodeBlock: React.FC<EpisodeBlockProps> = (props) => {
   const { episode, episodesList, index, setEpisodesList } = props;
   const { color, defaultNumber, director, title, writers } = episode;
 
-  const classnamesHeader = `episode-header bg-color-${color}`;
   const writersSuffix = writers.length > 1 ? 's' : '';
   const isFirst = index === 0;
   const isOneBeforeLast = index === EPISODE_COUNT - 2;
