@@ -17,6 +17,17 @@ NodeList [
         sebranly
       </a>
        
+      and
+       
+      <a
+        href="https://github.com/StephaneBranly"
+        rel="noopener noreferrer"
+        target="_blank"
+        title="GitHub page for StephaneBranly"
+      >
+        StephaneBranly
+      </a>
+       
       with 💙
     </div>
     <div>
@@ -31,7 +42,7 @@ NodeList [
         target="_blank"
         title="Website changelog"
       >
-        1.0.0
+        1.1.0
       </a>
     </div>
   </div>,

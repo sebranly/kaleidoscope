@@ -1,5 +1,12 @@
 import * as React from 'react';
-import { AUTHOR_NAME, CHANGELOG_URL, PROJECT_URL, WEBSITE_VERSION } from '../constants/general';
+import {
+  AUTHOR_NAME,
+  CHANGELOG_URL,
+  CONTRIBUTOR_NAME,
+  CONTRIBUTOR_URL,
+  PROJECT_URL,
+  WEBSITE_VERSION
+} from '../constants/general';
 
 const Footer = () => (
   <div className="App-footer">
@@ -7,6 +14,10 @@ const Footer = () => (
       Developed by{' '}
       <a href={PROJECT_URL} rel="noopener noreferrer" title="GitHub page for repository" target="_blank">
         {AUTHOR_NAME}
+      </a>{' '}
+      and{' '}
+      <a href={CONTRIBUTOR_URL} rel="noopener noreferrer" title={`GitHub page for ${CONTRIBUTOR_NAME}`} target="_blank">
+        {CONTRIBUTOR_NAME}
       </a>{' '}
       with 💙
     </div>

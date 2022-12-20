@@ -1,10 +1,12 @@
 export const AUTHOR_NAME = 'sebranly';
+export const CONTRIBUTOR_NAME = 'StephaneBranly';
+export const CONTRIBUTOR_URL = `https://github.com/${CONTRIBUTOR_NAME}`;
 export const PROJECT_NAME = 'kaleidoscope';
 export const PROJECT_URL = `https://github.com/${AUTHOR_NAME}/${PROJECT_NAME}`;
 export const CHANGELOG_URL = `${PROJECT_URL}/releases`;
 export const WEBSITE_TITLE = 'Kaleidoscope';
 export const WEBSITE_URL = `https://${AUTHOR_NAME}.github.io/${PROJECT_NAME}`;
-export const WEBSITE_VERSION = '1.0.0';
+export const WEBSITE_VERSION = '1.1.0';
 export const EPISODE_COUNT = 8;
 export const TIME_API_URL = 'https://worldtimeapi.org/api/timezone/America/Los_Angeles';
 // Result of `Math.floor((new Date("2023-01-01T00:00:00.000-08:00")).getTime() / 1000)`
