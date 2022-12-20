@@ -7,11 +7,10 @@ body {
 }
 
 @font-face {
-  font-family: "RealityHyperRegular";
-  src: local("RealityHyperRegular"),
-   url("./fonts/reality-hyper-regular/Reality\ Hyper\ Regular.ttf") format("truetype");
+  font-family: 'RealityHyperRegular';
+  src: local('RealityHyperRegular'), url('./fonts/reality-hyper-regular/Reality\ Hyper\ Regular.ttf') format('truetype');
   font-weight: bold;
-  }
+}
 
 code {
   color: white;
@@ -21,7 +20,7 @@ code {
 h1 {
   color: #ffffff;
   text-shadow: 2px 2px 4px #000000;
-  font-family: "RealityHyperRegular";
+  font-family: 'RealityHyperRegular';
   font-size: 50px;
 }
 
@@ -79,7 +78,7 @@ li span {
 }
 
 .episode-block {
-  color: black;  
+  color: black;
   height: 60px;
   position: relative;
   width: 100vw;
@@ -109,6 +108,7 @@ li span {
   border-radius: 10px;
   color: black;
 }
+
 .episode-header {
   font-size: 18px;
   font-weight: bold;
@@ -121,12 +121,14 @@ li span {
   justify-items: space-between;
   padding: 10px 0;
 }
-.episode-content-separator{
+
+.episode-content-separator {
   height: 5px;
   width: 100%;
   margin-bottom: 10px;
   border-radius: 10px;
 }
+
 .episode-details {
   text-align: left;
 }
@@ -136,12 +138,14 @@ li span {
   height: 50px;
   width: 90vw;
 }
+
 .episode-ribbon-number1-index0 {
   top: 50px;
   right: 10vw;
   width: 50px;
   height: 410px;
 }
+
 .episode-ribbon-number3-index0 {
   top: 410px;
   right: 0;
@@ -154,12 +158,14 @@ li span {
   height: 50px;
   width: 80vw;
 }
+
 .episode-ribbon-number1-index1 {
   top: 225px;
   left: 0vw;
   width: 20vw;
   height: 50px;
 }
+
 .episode-ribbon-number3-index1 {
   top: 50px;
   left: 20vw;
@@ -172,7 +178,9 @@ li span {
   height: 50px;
   width: 100vw;
 }
-.episode-ribbon-number1-index2, .episode-ribbon-number3-index2 {
+
+.episode-ribbon-number1-index2,
+.episode-ribbon-number3-index2 {
   visibility: hidden;
 }
 
@@ -181,12 +189,14 @@ li span {
   height: 50px;
   width: 70vw;
 }
+
 .episode-ribbon-number1-index3 {
   top: 50px;
   right: 30vw;
   width: 50px;
   height: 225px;
 }
+
 .episode-ribbon-number3-index3 {
   top: 225px;
   right: 0;
@@ -199,7 +209,9 @@ li span {
   height: 50px;
   width: 100vw;
 }
-.episode-ribbon-number1-index4, .episode-ribbon-number3-index4 {
+
+.episode-ribbon-number1-index4,
+.episode-ribbon-number3-index4 {
   visibility: hidden;
 }
 
@@ -208,12 +220,14 @@ li span {
   height: 50px;
   width: 80vw;
 }
+
 .episode-ribbon-number1-index5 {
   top: 380px;
   left: 0vw;
   width: 20vw;
   height: 50px;
 }
+
 .episode-ribbon-number3-index5 {
   top: 50px;
   left: 20vw;
@@ -226,12 +240,14 @@ li span {
   height: 50px;
   width: 70vw;
 }
+
 .episode-ribbon-number1-index6 {
   top: 50px;
   left: 30vw;
   width: 50px;
   height: 70px;
 }
+
 .episode-ribbon-number3-index6 {
   top: 70px;
   left: 0;
@@ -244,14 +260,18 @@ li span {
   height: 50px;
   width: 100vw;
 }
-.episode-ribbon-number1-index7, .episode-ribbon-number3-index7 {
+
+.episode-ribbon-number1-index7,
+.episode-ribbon-number3-index7 {
   visibility: hidden;
 }
+
 @media screen and (max-width: 1000px) {
   .episode-content {
     width: 70vw;
   }
 }
+
 @media screen and (max-width: 700px) {
   .episodes-watch-order {
     font-size: 24px;
@@ -275,7 +295,6 @@ li span {
     margin-bottom: 10px;
   }
 }
-
 
 @media screen and (max-width: 400px) {
   h1 {
@@ -352,7 +371,7 @@ li span {
 }
 
 .bg-color-pink {
-  background-image: linear-gradient(45deg, pink 0%, rgb(247, 60, 154) 100%);
+  background-image: linear-gradient(45deg, pink 0%, rgb(150, 75, 0) 100%);
   color: white;
 }
 

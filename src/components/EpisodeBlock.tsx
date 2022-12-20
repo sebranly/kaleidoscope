@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { EPISODE_COUNT } from '../constants/general';
 import { Direction, Episode } from '../types';
-import { swapEpisodes } from '../utils';
+import { pluralize, swapEpisodes } from '../utils';
 
 export interface EpisodeBlockProps {
   episode: Episode;
@@ -14,10 +14,11 @@ const EpisodeBlock: React.FC<EpisodeBlockProps> = (props) => {
   const { episode, episodesList, index, setEpisodesList } = props;
   const { color, defaultNumber, director, title, writers } = episode;
 
-  const writersSuffix = writers.length > 1 ? 's' : '';
+  const writersCopy = pluralize('Writer', writers.length);
   const isFirst = index === 0;
   const isOneBeforeLast = index === EPISODE_COUNT - 2;
   const isLast = index === EPISODE_COUNT - 1;
+  const bgColor = `bg-color-${color}`;
 
   const onClick = (direction: Direction) => {
     const episodesListBis = swapEpisodes(episodesList, direction, index);
@@ -26,10 +27,10 @@ const EpisodeBlock: React.FC<EpisodeBlockProps> = (props) => {
   };
 
   return (
-    <div className={`episode-block`}>
-      <div className={`episode-ribbon-number1-index${index} episode-ribbon bg-color-${color}`} />
-      <div className={`episode-ribbon-number2-index${index} episode-ribbon bg-color-${color}`} />
-      <div className={`episode-ribbon-number3-index${index} episode-ribbon bg-color-${color}`} />
+    <div className="episode-block">
+      <div className={`episode-ribbon-number1-index${index} episode-ribbon ${bgColor}`} />
+      <div className={`episode-ribbon-number2-index${index} episode-ribbon ${bgColor}`} />
+      <div className={`episode-ribbon-number3-index${index} episode-ribbon ${bgColor}`} />
       <div className={`episode-content`}>
         <div className={`episode-header`}>
           {!isFirst && !isLast ? (
@@ -49,10 +50,10 @@ const EpisodeBlock: React.FC<EpisodeBlockProps> = (props) => {
             <div></div>
           )}
         </div>
-        <div className={`episode-content-separator bg-color-${color}`}></div>
+        <div className={`episode-content-separator ${bgColor}`}></div>
         <div className="episode-details">
           <div className="episode-writers">
-            <b>Writer{writersSuffix}:</b> {writers.join(', ')}
+            <b>{writersCopy}:</b> {writers.join(', ')}
           </div>
           {director && (
             <div className="episode-director">
