@@ -1,33 +1,33 @@
 import * as React from 'react';
-import { convertSecondsToUnits, convertToTwoDigits, pluralize } from '../utils';
+import { TimeLabel } from '../types';
+import { convertSecondsToUnits, convertToTwoDigits, getCurrentTimestamp, pluralize } from '../utils';
 
 export interface CountDownTimerProps {
-  remainingSeconds: number;
+  endTime: number;
 }
 
 const CountDownTimer: React.FC<CountDownTimerProps> = (props) => {
-  const { remainingSeconds } = props;
+  const [currentTimestamp, setCurrentTimestamp] = React.useState(getCurrentTimestamp());
 
-  const [remainingSecondsBis, setRemainingSecondsBis] = React.useState(remainingSeconds);
+  const { endTime } = props;
 
   const onMount = () => {
     const interval = setInterval(() => {
-      setRemainingSecondsBis((prevValue: number) => {
-        return prevValue - 1;
-      });
+      setCurrentTimestamp(getCurrentTimestamp());
     }, 1000);
 
     return () => clearInterval(interval);
   };
 
-  // Note: StrictMode triggers useEffect twice on development hence the minus 2 seconds on each tick
   React.useEffect(() => {
     onMount();
   }, []);
 
-  if (remainingSecondsBis <= 0) return null;
+  const remainingSeconds = endTime - currentTimestamp;
 
-  const { days, hours, minutes, seconds } = convertSecondsToUnits(remainingSecondsBis);
+  if (remainingSeconds <= 0) return null;
+
+  const { days, hours, minutes, seconds } = convertSecondsToUnits(remainingSeconds);
   if (days === 0 && hours === 0 && minutes === 0 && seconds === 0) {
     return null;
   }
@@ -37,14 +37,16 @@ const CountDownTimer: React.FC<CountDownTimerProps> = (props) => {
   const isFixedMinutes = isFixedHours && minutes === 0;
 
   const items = [
-    { value: days, label: 'day' },
-    { value: hours, label: 'hour' },
-    { value: minutes, label: 'minute' },
-    { value: seconds, label: 'second' }
+    { value: days, label: TimeLabel.Day },
+    { value: hours, label: TimeLabel.Hour },
+    { value: minutes, label: TimeLabel.Minute },
+    { value: seconds, label: TimeLabel.Second }
   ].map((element: { value: number; label: string }) => {
     const { value, label: l } = element;
     const isFixed =
-      (l === 'day' && isFixedDays) || (l === 'hour' && isFixedHours) || (l === 'minute' && isFixedMinutes);
+      (l === TimeLabel.Day && isFixedDays) ||
+      (l === TimeLabel.Hour && isFixedHours) ||
+      (l === TimeLabel.Minute && isFixedMinutes);
 
     const classnamesValue = isFixed ? 'color-light-blue' : '';
 

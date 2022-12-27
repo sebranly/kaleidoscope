@@ -25,6 +25,13 @@ export type TimeUnits = {
   seconds: number;
 };
 
+export enum TimeLabel {
+  Day = 'day',
+  Hour = 'hour',
+  Minute = 'minute',
+  Second = 'second'
+}
+
 export enum Direction {
   Up = 'up',
   Down = 'down'

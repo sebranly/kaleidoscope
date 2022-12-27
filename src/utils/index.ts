@@ -1,6 +1,8 @@
 import { EPISODE_COUNT } from '../constants/general';
 import { Color, Direction, Episode, TimeUnits } from '../types';
 
+const getCurrentTimestamp = () => Math.floor(Date.now() / 1000);
+
 const getHeartEmoji = (color: Color) => {
   const { Yellow, Green, Blue, Violet, Orange, Red, Pink, White } = Color;
   switch (color) {
@@ -138,6 +140,7 @@ export {
   convertSecondsToUnits,
   convertToTwoDigits,
   filterNonLinearEpisodes,
+  getCurrentTimestamp,
   getHeartEmoji,
   getNumberEmoji,
   pluralize,
