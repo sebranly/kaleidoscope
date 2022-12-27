@@ -19,13 +19,10 @@ import useWindowSize from 'react-use/lib/useWindowSize';
 import { CountDownTimer } from './components/CountDownTimer';
 
 function App() {
-  const getCurrentTimestamp = () => Math.floor(Date.now() / 1000);
-
   const [shareableEpisodes, setShareableEpisodes] = React.useState(EPISODE_COUNT);
   const [episodesList, setEpisodesList] = React.useState<Episode[]>(shuffleEpisodes(episodes));
-
-  const [currentTimestamp, setCurrentTimestamp] = React.useState(getCurrentTimestamp());
   const [copiedWatchOrder, setCopiedWatchOrder] = React.useState(false);
+
   const { width } = useWindowSize();
 
   const episodesHeartEmoji = episodesList
@@ -40,20 +37,10 @@ function App() {
 
   const sharingText = `Get your unique Kaleidoscope viewing order on: ${WEBSITE_URL}\n\nMine is:\n${episodesHeartEmoji}\n${episodesNumbersEmojis}\n\n#kaleidoscope #netflix\n\n`;
   const classnamesCopy = copiedWatchOrder ? 'button-disabled' : 'button-enabled';
-  const diffTimestamp = SHOW_RELEASE_DATE_PT - currentTimestamp;
-
-  const onMount = () => {
-    setCurrentTimestamp(getCurrentTimestamp());
-  };
 
   React.useEffect(() => {
     setCopiedWatchOrder(false);
   }, [episodesList, shareableEpisodes]);
-
-  React.useEffect(() => {
-    onMount();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <div className="App">
@@ -100,7 +87,7 @@ function App() {
             </b>{' '}
             a viewing order among the 5040 viewing possibilities!
           </div>
-          {diffTimestamp > 0 && <CountDownTimer remainingSeconds={diffTimestamp} />}
+          <CountDownTimer endTime={SHOW_RELEASE_DATE_PT} />
         </div>
 
         <h2>Episodes Watch List</h2>
