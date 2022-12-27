@@ -25,7 +25,7 @@ const CountDownTimer: React.FC<CountDownTimerProps> = (props) => {
 
   const remainingSeconds = endTime - currentTimestamp;
 
-  if (endTime <= 0) return null;
+  if (remainingSeconds <= 0) return null;
 
   const { days, hours, minutes, seconds } = convertSecondsToUnits(remainingSeconds);
   if (days === 0 && hours === 0 && minutes === 0 && seconds === 0) {
@@ -45,8 +45,8 @@ const CountDownTimer: React.FC<CountDownTimerProps> = (props) => {
     const { value, label: l } = element;
     const isFixed =
       (l === TimeLabel.Day && isFixedDays) ||
-      (l === TimeLabel.Minute && isFixedHours) ||
-      (l === TimeLabel.Second && isFixedMinutes);
+      (l === TimeLabel.Hour && isFixedHours) ||
+      (l === TimeLabel.Minute && isFixedMinutes);
 
     const classnamesValue = isFixed ? 'color-light-blue' : '';
 
