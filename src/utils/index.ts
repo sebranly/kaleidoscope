@@ -1,51 +1,27 @@
 import { EPISODE_COUNT } from '../constants/general';
 import { Color, Direction, Episode, TimeUnits } from '../types';
 
-const getSquareEmoji = (color: Color) => {
+const getHeartEmoji = (color: Color) => {
   const { Yellow, Green, Blue, Violet, Orange, Red, Pink, White } = Color;
   switch (color) {
     case Yellow:
-      return '🟨';
+      return '💛';
     case Green:
-      return '🟩';
+      return '💚';
     case Blue:
-      return '🟦';
+      return '💙';
     case Violet:
-      return '🟪';
+      return '💜';
     case Orange:
-      return '🟧';
+      return '🧡';
     case Red:
-      return '🟥';
+      return '❤️';
     case Pink:
-      return '🟫';
+      return '💗';
     case White:
-      return '⬜';
+      return '🤍';
     default:
-      return '⬛';
-  }
-};
-
-const getDotEmoji = (color: Color) => {
-  const { Yellow, Green, Blue, Violet, Orange, Red, Pink, White } = Color;
-  switch (color) {
-    case Yellow:
-      return '🟡';
-    case Green:
-      return '🟢';
-    case Blue:
-      return '🔵';
-    case Violet:
-      return '🟣';
-    case Orange:
-      return '🟠';
-    case Red:
-      return '🔴';
-    case Pink:
-      return '🟤';
-    case White:
-      return '⚪';
-    default:
-      return '⚫';
+      return '🖤';
   }
 };
 
@@ -162,9 +138,8 @@ export {
   convertSecondsToUnits,
   convertToTwoDigits,
   filterNonLinearEpisodes,
-  getDotEmoji,
+  getHeartEmoji,
   getNumberEmoji,
-  getSquareEmoji,
   pluralize,
   reverseEpisodes,
   shuffleEpisodes,

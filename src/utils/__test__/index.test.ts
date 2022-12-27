@@ -3,9 +3,8 @@ import {
   convertSecondsToUnits,
   convertToTwoDigits,
   filterNonLinearEpisodes,
-  getDotEmoji,
+  getHeartEmoji,
   getNumberEmoji,
-  getSquareEmoji,
   pluralize,
   reverseEpisodes,
   shuffleEpisodes,
@@ -69,26 +68,15 @@ const episodes: Episode[] = [
   }
 ];
 
-test('getSquareEmoji', () => {
-  expect(getSquareEmoji(Color.Yellow)).toBe('🟨');
-  expect(getSquareEmoji(Color.Green)).toBe('🟩');
-  expect(getSquareEmoji(Color.Blue)).toBe('🟦');
-  expect(getSquareEmoji(Color.Violet)).toBe('🟪');
-  expect(getSquareEmoji(Color.Orange)).toBe('🟧');
-  expect(getSquareEmoji(Color.Red)).toBe('🟥');
-  expect(getSquareEmoji(Color.Pink)).toBe('🟫');
-  expect(getSquareEmoji(Color.White)).toBe('⬜');
-});
-
-test('getDotEmoji', () => {
-  expect(getDotEmoji(Color.Yellow)).toBe('🟡');
-  expect(getDotEmoji(Color.Green)).toBe('🟢');
-  expect(getDotEmoji(Color.Blue)).toBe('🔵');
-  expect(getDotEmoji(Color.Violet)).toBe('🟣');
-  expect(getDotEmoji(Color.Orange)).toBe('🟠');
-  expect(getDotEmoji(Color.Red)).toBe('🔴');
-  expect(getDotEmoji(Color.Pink)).toBe('🟤');
-  expect(getDotEmoji(Color.White)).toBe('⚪');
+test('getHeartEmoji', () => {
+  expect(getHeartEmoji(Color.Yellow)).toBe('💛');
+  expect(getHeartEmoji(Color.Green)).toBe('💚');
+  expect(getHeartEmoji(Color.Blue)).toBe('💙');
+  expect(getHeartEmoji(Color.Violet)).toBe('💜');
+  expect(getHeartEmoji(Color.Orange)).toBe('🧡');
+  expect(getHeartEmoji(Color.Red)).toBe('❤️');
+  expect(getHeartEmoji(Color.Pink)).toBe('💗');
+  expect(getHeartEmoji(Color.White)).toBe('🤍');
 });
 
 test('getNumberEmoji', () => {
