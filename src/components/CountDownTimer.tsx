@@ -20,7 +20,6 @@ const CountDownTimer: React.FC<CountDownTimerProps> = (props) => {
     return () => clearInterval(interval);
   };
 
-  // Note: StrictMode triggers useEffect twice on development hence the minus 2 seconds on each tick
   React.useEffect(() => {
     onMount();
   }, []);

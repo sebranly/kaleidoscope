@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  CONFETTI_COLORS,
-  EPISODE_COUNT,
-  SHOW_RELEASE_DATE_PT,
-  TIME_API_URL,
-  WEBSITE_TITLE,
-  WEBSITE_URL
-} from './constants/general';
+import { CONFETTI_COLORS, EPISODE_COUNT, SHOW_RELEASE_DATE_PT, WEBSITE_TITLE, WEBSITE_URL } from './constants/general';
 import { Footer } from './components/Footer';
 import { episodes } from './data';
 import './App.css';
@@ -26,11 +19,12 @@ import useWindowSize from 'react-use/lib/useWindowSize';
 import { CountDownTimer } from './components/CountDownTimer';
 
 function App() {
+  const getCurrentTimestamp = () => Math.floor(Date.now() / 1000);
+
   const [shareableEpisodes, setShareableEpisodes] = React.useState(EPISODE_COUNT);
   const [episodesList, setEpisodesList] = React.useState<Episode[]>(shuffleEpisodes(episodes));
 
-  // Setting it to end date by default not to show the countdown timer
-  const [currentUnixTime, setCurrentUnixTime] = React.useState<number>(SHOW_RELEASE_DATE_PT);
+  const [currentTimestamp, setCurrentTimestamp] = React.useState(getCurrentTimestamp());
   const [copiedWatchOrder, setCopiedWatchOrder] = React.useState(false);
   const { width } = useWindowSize();
 
@@ -46,18 +40,10 @@ function App() {
 
   const sharingText = `Get your unique Kaleidoscope viewing order on: ${WEBSITE_URL}\n\nMine is:\n${episodesHeartEmoji}\n${episodesNumbersEmojis}\n\n#kaleidoscope #netflix\n\n`;
   const classnamesCopy = copiedWatchOrder ? 'button-disabled' : 'button-enabled';
-  const unixDiffSeconds = SHOW_RELEASE_DATE_PT - currentUnixTime;
+  const diffTimestamp = SHOW_RELEASE_DATE_PT - currentTimestamp;
 
-  const onMount = async () => {
-    fetch(TIME_API_URL)
-      .then((response) => response.json())
-      .then((data) => {
-        const dataCurrentUnixTime = data.unixtime;
-        setCurrentUnixTime(dataCurrentUnixTime);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  const onMount = () => {
+    setCurrentTimestamp(getCurrentTimestamp());
   };
 
   React.useEffect(() => {
@@ -66,6 +52,7 @@ function App() {
 
   React.useEffect(() => {
     onMount();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -113,7 +100,7 @@ function App() {
             </b>{' '}
             a viewing order among the 5040 viewing possibilities!
           </div>
-          {unixDiffSeconds > 0 && <CountDownTimer remainingSeconds={unixDiffSeconds} />}
+          {diffTimestamp > 0 && <CountDownTimer remainingSeconds={diffTimestamp} />}
         </div>
 
         <h2>Episodes Watch List</h2>
