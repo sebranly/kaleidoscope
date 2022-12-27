@@ -13,9 +13,8 @@ import './App.css';
 import { Episode } from './types';
 import { EpisodeBlock } from './components/EpisodeBlock';
 import {
-  getDotEmoji,
+  getHeartEmoji,
   getNumberEmoji,
-  getSquareEmoji,
   reverseEpisodes,
   sortToChronologicalEpisodes,
   sortToDefaultEpisodes,
@@ -35,14 +34,9 @@ function App() {
   const [copiedWatchOrder, setCopiedWatchOrder] = React.useState(false);
   const { width } = useWindowSize();
 
-  const episodesSquaresEmojis = episodesList
+  const episodesHeartEmoji = episodesList
     .slice(0, shareableEpisodes)
-    .map((ep: Episode) => getSquareEmoji(ep.color))
-    .join('');
-
-  const episodesDotsEmojis = episodesList
-    .slice(0, shareableEpisodes)
-    .map((ep: Episode) => getDotEmoji(ep.color))
+    .map((ep: Episode) => getHeartEmoji(ep.color))
     .join('');
 
   const episodesNumbersEmojis = episodesList
@@ -50,7 +44,7 @@ function App() {
     .map((ep: Episode) => getNumberEmoji(ep.defaultNumber))
     .join('');
 
-  const sharingText = `Get your unique Kaleidoscope viewing order on: ${WEBSITE_URL}\n\nMine is:\n${episodesDotsEmojis}\n${episodesSquaresEmojis}\n${episodesNumbersEmojis}\n\n#kaleidoscope #netflix\n\n`;
+  const sharingText = `Get your unique Kaleidoscope viewing order on: ${WEBSITE_URL}\n\nMine is:\n${episodesHeartEmoji}\n${episodesNumbersEmojis}\n\n#kaleidoscope #netflix\n\n`;
   const classnamesCopy = copiedWatchOrder ? 'button-disabled' : 'button-enabled';
   const unixDiffSeconds = SHOW_RELEASE_DATE_PT - currentUnixTime;
 
@@ -188,8 +182,7 @@ function App() {
               type="range"
             />
           </div>
-          <div className="episodes-watch-order-line">{episodesDotsEmojis}</div>
-          <div className="episodes-watch-order-line">{episodesSquaresEmojis}</div>
+          <div className="episodes-watch-order-line">{episodesHeartEmoji}</div>
           <div className="episodes-watch-order-line">{episodesNumbersEmojis}</div>
           <br />
           <CopyToClipboard options={{ message: '' }} text={sharingText} onCopy={() => setCopiedWatchOrder(true)}>
