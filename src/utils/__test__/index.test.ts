@@ -158,6 +158,15 @@ test('sortToChronologicalEpisodes', () => {
 test('sortToRainbowEpisodes', () => {
   const rainbowEpisodes = sortToRainbowEpisodes(episodes);
   expect(rainbowEpisodes).toHaveLength(8);
+
+  expect(rainbowEpisodes[0]).toStrictEqual(episodes[5]);
+  expect(rainbowEpisodes[1]).toStrictEqual(episodes[4]);
+  expect(rainbowEpisodes[2]).toStrictEqual(episodes[0]);
+  expect(rainbowEpisodes[3]).toStrictEqual(episodes[1]);
+  expect(rainbowEpisodes[4]).toStrictEqual(episodes[2]);
+  expect(rainbowEpisodes[5]).toStrictEqual(episodes[3]);
+  expect(rainbowEpisodes[6]).toStrictEqual(episodes[6]);
+  expect(rainbowEpisodes[7]).toStrictEqual(episodes[7]);
 });
 
 test('pluralize', () => {
