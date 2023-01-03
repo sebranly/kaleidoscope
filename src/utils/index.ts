@@ -170,6 +170,24 @@ const convertToTwoDigits = (nb: number) => {
   return `${nb}`;
 };
 
+const getRandomColor = () => {
+  const colors = [
+    Color.Blue,
+    Color.Green,
+    Color.Orange,
+    Color.Pink,
+    Color.Red,
+    Color.Violet,
+    Color.White,
+    Color.Yellow
+  ];
+
+  const randomIndex = Math.floor(Math.random() * colors.length);
+  const randomColor = colors[randomIndex];
+
+  return randomColor;
+};
+
 export {
   convertSecondsToUnits,
   convertToTwoDigits,
@@ -177,6 +195,7 @@ export {
   getCurrentTimestamp,
   getEpisodeByColor,
   getHeartEmoji,
+  getRandomColor,
   netflixShuffleEpisodes,
   pluralize,
   reverseEpisodes,
