@@ -10,6 +10,7 @@ import {
   shuffleEpisodes,
   sortToChronologicalEpisodes,
   sortToDefaultEpisodes,
+  sortToRainbowEpisodes,
   swapEpisodes
 } from '../index';
 
@@ -152,6 +153,11 @@ test('sortToChronologicalEpisodes', () => {
   expect(chronologicalEpisodes[5]).toStrictEqual(episodes[7]);
   expect(chronologicalEpisodes[6]).toStrictEqual(episodes[5]);
   expect(chronologicalEpisodes[7]).toStrictEqual(episodes[6]);
+});
+
+test('sortToRainbowEpisodes', () => {
+  const rainbowEpisodes = sortToRainbowEpisodes(episodes);
+  expect(rainbowEpisodes).toHaveLength(8);
 });
 
 test('pluralize', () => {

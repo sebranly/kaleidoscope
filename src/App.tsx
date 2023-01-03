@@ -11,6 +11,7 @@ import {
   reverseEpisodes,
   sortToChronologicalEpisodes,
   sortToDefaultEpisodes,
+  sortToRainbowEpisodes,
   shuffleEpisodes
 } from './utils';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
@@ -110,6 +111,12 @@ function App() {
               onClick={() => setEpisodesList(sortToChronologicalEpisodes(episodesList))}
             >
               🕒 Chronological
+            </button>
+            <button
+              className="basic-button sort-button button-enabled"
+              onClick={() => setEpisodesList(sortToRainbowEpisodes(episodesList))}
+            >
+              🌈 Rainbow
             </button>
             <button
               className="basic-button sort-button button-enabled"

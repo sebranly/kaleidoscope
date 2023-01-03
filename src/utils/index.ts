@@ -70,6 +70,23 @@ const sortToDefaultEpisodes = (episodes: Episode[]) => {
   return defaultEpisodes;
 };
 
+const sortToRainbowEpisodes = (episodes: Episode[]) => {
+  const copiedEpisodes = copyEpisodes(episodes);
+
+  const rainbowEpisodes = [
+    ...copiedEpisodes.filter((e: Episode) => e.color === Color.Red),
+    ...copiedEpisodes.filter((e: Episode) => e.color === Color.Orange),
+    ...copiedEpisodes.filter((e: Episode) => e.color === Color.Yellow),
+    ...copiedEpisodes.filter((e: Episode) => e.color === Color.Green),
+    ...copiedEpisodes.filter((e: Episode) => e.color === Color.Blue),
+    ...copiedEpisodes.filter((e: Episode) => e.color === Color.Violet),
+    ...copiedEpisodes.filter((e: Episode) => e.color === Color.Pink),
+    ...copiedEpisodes.filter((e: Episode) => e.color === Color.White),
+  ];
+
+  return rainbowEpisodes;
+}
+
 const sortToChronologicalEpisodes = (episodes: Episode[]) => {
   const copiedEpisodes = copyEpisodes(episodes);
   const chronologicalEpisodes = copiedEpisodes.sort(
@@ -147,5 +164,6 @@ export {
   shuffleEpisodes,
   sortToChronologicalEpisodes,
   sortToDefaultEpisodes,
+  sortToRainbowEpisodes,
   swapEpisodes
 };
