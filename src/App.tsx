@@ -177,7 +177,6 @@ function App() {
             />
           </div>
           <div className="episodes-watch-order-line">{episodesHeartEmoji}</div>
-          <div className="episodes-watch-order-line">{episodesNumbersEmojis}</div>
           <br />
           <CopyToClipboard options={{ message: '' }} text={sharingText} onCopy={() => setCopiedWatchOrder(true)}>
             <button className={`basic-button ${classnamesCopy}`} disabled={copiedWatchOrder}>
