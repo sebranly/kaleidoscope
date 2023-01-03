@@ -160,11 +160,6 @@ li span {
   display: inline;
 }
 
-.episode-locked {
-  float: left;
-  cursor: not-allowed;
-}
-
 .episode-arrow {
   background: transparent;
   border: 0;

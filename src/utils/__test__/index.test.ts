@@ -116,16 +116,8 @@ test('swapEpisodes', () => {
 
 test('copyEpisodes', () => {
   const copiedEpisodes = copyEpisodes(episodes);
-  expect(copiedEpisodes).toHaveLength(8);
-
-  expect(copiedEpisodes[0]).toStrictEqual(episodes[0]);
-  expect(copiedEpisodes[1]).toStrictEqual(episodes[1]);
-  expect(copiedEpisodes[2]).toStrictEqual(episodes[2]);
-  expect(copiedEpisodes[3]).toStrictEqual(episodes[3]);
-  expect(copiedEpisodes[4]).toStrictEqual(episodes[4]);
-  expect(copiedEpisodes[5]).toStrictEqual(episodes[5]);
-  expect(copiedEpisodes[6]).toStrictEqual(episodes[6]);
-  expect(copiedEpisodes[7]).toStrictEqual(episodes[7]);
+  expect(copiedEpisodes).toStrictEqual(episodes)
+  expect(copiedEpisodes).not.toBe(episodes)
 });
 
 test('reverseEpisodes', () => {
