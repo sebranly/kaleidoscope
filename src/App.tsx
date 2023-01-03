@@ -76,7 +76,7 @@ function App() {
             .
           </div>
           <div className="introduction-line">
-            The first 7 episodes can be watched in any order. Then the finale unlocks.
+            Although the <i>finale is recommended last</i>, the episodes can be watched in any order.
           </div>
           <div className="introduction-line">
             This webpage allows you to{' '}
@@ -85,7 +85,7 @@ function App() {
                 <i>create and share</i>
               </div>
             </b>{' '}
-            a viewing order among the 5040 viewing possibilities!
+            a viewing order among the 40320 viewing possibilities!
           </div>
           <CountDownTimer endTime={SHOW_RELEASE_DATE_PT} />
         </div>

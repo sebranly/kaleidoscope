@@ -88,7 +88,7 @@ const reverseEpisodes = (episodes: Episode[]) => {
 
 const swapEpisodes = (episodes: Episode[], direction: Direction, index: number) => {
   const cannotGoUp = direction === Direction.Up && index <= 0;
-  const cannotGoDown = direction === Direction.Down && index >= EPISODE_COUNT - 2;
+  const cannotGoDown = direction === Direction.Down && index >= EPISODE_COUNT - 1;
 
   if (cannotGoUp || cannotGoDown) return episodes;
   const copiedEpisodes = copyEpisodes(episodes);
