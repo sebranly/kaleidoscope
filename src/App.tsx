@@ -7,7 +7,6 @@ import { Episode } from './types';
 import { EpisodeBlock } from './components/EpisodeBlock';
 import {
   getHeartEmoji,
-  getNumberEmoji,
   reverseEpisodes,
   sortToChronologicalEpisodes,
   sortToDefaultEpisodes,
@@ -32,12 +31,7 @@ function App() {
     .map((ep: Episode) => getHeartEmoji(ep.color))
     .join('');
 
-  const episodesNumbersEmojis = episodesList
-    .slice(0, shareableEpisodes)
-    .map((ep: Episode) => getNumberEmoji(ep.defaultNumber))
-    .join('');
-
-  const sharingText = `Get your unique Kaleidoscope viewing order on: ${WEBSITE_URL}\n\nMine is:\n${episodesHeartEmoji}\n${episodesNumbersEmojis}\n\n#kaleidoscope #netflix\n\n`;
+  const sharingText = `Get your unique Kaleidoscope viewing order on: ${WEBSITE_URL}\n\nMine is:\n${episodesHeartEmoji}\n\n#kaleidoscope #netflix\n\n`;
   const classnamesCopy = copiedWatchOrder ? 'button-disabled' : 'button-enabled';
 
   React.useEffect(() => {

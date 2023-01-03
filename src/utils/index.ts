@@ -27,29 +27,6 @@ const getHeartEmoji = (color: Color) => {
   }
 };
 
-const getNumberEmoji = (nb: number) => {
-  switch (nb) {
-    case 1:
-      return '1️⃣';
-    case 2:
-      return '2️⃣';
-    case 3:
-      return '3️⃣';
-    case 4:
-      return '4️⃣';
-    case 5:
-      return '5️⃣';
-    case 6:
-      return '6️⃣';
-    case 7:
-      return '7️⃣';
-    case 8:
-      return '8️⃣';
-    default:
-      return '#️⃣';
-  }
-};
-
 const copyEpisodes = (episodes: Episode[]) => {
   const copiedEpisodes = episodes.slice(0, EPISODE_COUNT);
 
@@ -200,7 +177,6 @@ export {
   getCurrentTimestamp,
   getEpisodeByColor,
   getHeartEmoji,
-  getNumberEmoji,
   netflixShuffleEpisodes,
   pluralize,
   reverseEpisodes,

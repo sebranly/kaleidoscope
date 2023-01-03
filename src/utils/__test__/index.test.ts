@@ -5,7 +5,6 @@ import {
   copyEpisodes,
   getEpisodeByColor,
   getHeartEmoji,
-  getNumberEmoji,
   netflixShuffleEpisodes,
   pluralize,
   reverseEpisodes,
@@ -86,18 +85,6 @@ test('getHeartEmoji', () => {
   expect(getHeartEmoji(Color.Red)).toBe('❤️');
   expect(getHeartEmoji(Color.Pink)).toBe('💗');
   expect(getHeartEmoji(Color.White)).toBe('🤍');
-});
-
-test('getNumberEmoji', () => {
-  expect(getNumberEmoji(1)).toBe('1️⃣');
-  expect(getNumberEmoji(2)).toBe('2️⃣');
-  expect(getNumberEmoji(3)).toBe('3️⃣');
-  expect(getNumberEmoji(4)).toBe('4️⃣');
-  expect(getNumberEmoji(5)).toBe('5️⃣');
-  expect(getNumberEmoji(6)).toBe('6️⃣');
-  expect(getNumberEmoji(7)).toBe('7️⃣');
-  expect(getNumberEmoji(8)).toBe('8️⃣');
-  expect(getNumberEmoji(9)).toBe('#️⃣');
 });
 
 test('getEpisodeByColor', () => {
