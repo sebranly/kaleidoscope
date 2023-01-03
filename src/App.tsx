@@ -125,7 +125,7 @@ function App() {
             </button>
           </div>
           <div className="episodes-watch-order-introduction-line">
-            Interact with 🔼 and 🔽 to change the order of one specific episode (except the finale)
+            Interact with 🔼 and 🔽 to change the order of one specific episode
           </div>
         </div>
         <div className="episodes-list">
