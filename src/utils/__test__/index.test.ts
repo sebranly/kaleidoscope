@@ -3,6 +3,7 @@ import {
   convertSecondsToUnits,
   convertToTwoDigits,
   copyEpisodes,
+  getEpisodeByColor,
   getHeartEmoji,
   getNumberEmoji,
   pluralize,
@@ -91,6 +92,17 @@ test('getNumberEmoji', () => {
   expect(getNumberEmoji(8)).toBe('8️⃣');
   expect(getNumberEmoji(9)).toBe('#️⃣');
 });
+
+test('getEpisodeByColor', () => {
+  const redEpisode = getEpisodeByColor(episodes, Color.Red);
+  expect(redEpisode).toStrictEqual({
+    color: Color.Red,
+    defaultNumber: 6,
+    hoursFromHeist: 12,
+    title: 'The Morning After The Heist',
+    writers: ['somebody']
+  })
+})
 
 test('shuffleEpisodes', () => {
   const shuffledEpisodes = shuffleEpisodes(episodes);

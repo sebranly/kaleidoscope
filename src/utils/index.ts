@@ -56,6 +56,11 @@ const copyEpisodes = (episodes: Episode[]) => {
   return copiedEpisodes;
 };
 
+const getEpisodeByColor = (episodes: Episode[], color: Color) => {
+  const colorEpisode = episodes.filter((episode: Episode) => episode.color === color);
+  return colorEpisode.length ? colorEpisode[0] : null;
+}
+
 const shuffleEpisodes = (episodes: Episode[]) => {
   const copiedEpisodes = copyEpisodes(episodes);
   const shuffledEpisodes = copiedEpisodes.sort(() => Math.random() - 0.5);
@@ -74,14 +79,14 @@ const sortToRainbowEpisodes = (episodes: Episode[]) => {
   const copiedEpisodes = copyEpisodes(episodes);
 
   const rainbowEpisodes = [
-    ...copiedEpisodes.filter((e: Episode) => e.color === Color.Red),
-    ...copiedEpisodes.filter((e: Episode) => e.color === Color.Orange),
-    ...copiedEpisodes.filter((e: Episode) => e.color === Color.Yellow),
-    ...copiedEpisodes.filter((e: Episode) => e.color === Color.Green),
-    ...copiedEpisodes.filter((e: Episode) => e.color === Color.Blue),
-    ...copiedEpisodes.filter((e: Episode) => e.color === Color.Violet),
-    ...copiedEpisodes.filter((e: Episode) => e.color === Color.Pink),
-    ...copiedEpisodes.filter((e: Episode) => e.color === Color.White),
+    getEpisodeByColor(copiedEpisodes, Color.Red)!,
+    getEpisodeByColor(copiedEpisodes, Color.Orange)!,
+    getEpisodeByColor(copiedEpisodes, Color.Yellow)!,
+    getEpisodeByColor(copiedEpisodes, Color.Green)!,
+    getEpisodeByColor(copiedEpisodes, Color.Blue)!,
+    getEpisodeByColor(copiedEpisodes, Color.Violet)!,
+    getEpisodeByColor(copiedEpisodes, Color.Pink)!,
+    getEpisodeByColor(copiedEpisodes, Color.White)!,
   ];
 
   return rainbowEpisodes;
@@ -157,6 +162,7 @@ export {
   convertToTwoDigits,
   copyEpisodes,
   getCurrentTimestamp,
+  getEpisodeByColor,
   getHeartEmoji,
   getNumberEmoji,
   pluralize,
