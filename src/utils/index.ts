@@ -59,7 +59,7 @@ const copyEpisodes = (episodes: Episode[]) => {
 const getEpisodeByColor = (episodes: Episode[], color: Color) => {
   const colorEpisode = episodes.filter((episode: Episode) => episode.color === color);
   return colorEpisode.length ? colorEpisode[0] : null;
-}
+};
 
 const shuffleEpisodes = (episodes: Episode[]) => {
   const copiedEpisodes = copyEpisodes(episodes);
@@ -80,14 +80,23 @@ const shuffleEpisodes = (episodes: Episode[]) => {
 const netflixShuffleEpisodes = (episodes: Episode[]) => {
   const copiedEpisodes = copyEpisodes(episodes);
 
-  const [yellow, green, blue, violet, orange, red, pink, white] = [Color.Yellow, Color.Green, Color.Blue, Color.Violet, Color.Orange, Color.Red, Color.Pink, Color.White].map((color: Color) => {
+  const [yellow, green, blue, violet, orange, red, pink, white] = [
+    Color.Yellow,
+    Color.Green,
+    Color.Blue,
+    Color.Violet,
+    Color.Orange,
+    Color.Red,
+    Color.Pink,
+    Color.White
+  ].map((color: Color) => {
     const colorEpisode = getEpisodeByColor(copiedEpisodes, color);
 
     return colorEpisode!;
   });
 
   const firstGroup = shuffleEpisodes([yellow, green]);
-  const secondGroup = shuffleEpisodes([blue, violet, orange])
+  const secondGroup = shuffleEpisodes([blue, violet, orange]);
   const thirdGroup = shuffleEpisodes([red, pink]);
 
   return [...firstGroup, ...secondGroup, ...thirdGroup, white];
@@ -103,12 +112,21 @@ const sortToDefaultEpisodes = (episodes: Episode[]) => {
 const sortToRainbowEpisodes = (episodes: Episode[]) => {
   const copiedEpisodes = copyEpisodes(episodes);
 
-  const rainbowEpisodes = [Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Blue, Color.Violet, Color.Pink, Color.White].map((color: Color) => {
+  const rainbowEpisodes = [
+    Color.Red,
+    Color.Orange,
+    Color.Yellow,
+    Color.Green,
+    Color.Blue,
+    Color.Violet,
+    Color.Pink,
+    Color.White
+  ].map((color: Color) => {
     return getEpisodeByColor(copiedEpisodes, color)!;
   });
 
   return rainbowEpisodes;
-}
+};
 
 const sortToChronologicalEpisodes = (episodes: Episode[]) => {
   const copiedEpisodes = copyEpisodes(episodes);

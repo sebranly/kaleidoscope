@@ -61,7 +61,13 @@ const episodes: Episode[] = [
     title: 'The Morning After The Heist',
     writers: ['somebody']
   },
-  { color: Color.Pink, defaultNumber: 7, hoursFromHeist: 6 * 30 * 24, title: '6 Months After The Heist', writers: ['somebody'] },
+  {
+    color: Color.Pink,
+    defaultNumber: 7,
+    hoursFromHeist: 6 * 30 * 24,
+    title: '6 Months After The Heist',
+    writers: ['somebody']
+  },
   {
     color: Color.White,
     defaultNumber: 8,
@@ -102,8 +108,8 @@ test('getEpisodeByColor', () => {
     hoursFromHeist: 12,
     title: 'The Morning After The Heist',
     writers: ['somebody']
-  })
-})
+  });
+});
 
 test('shuffleEpisodes', () => {
   const shuffledEpisodes = shuffleEpisodes(episodes);
@@ -136,8 +142,8 @@ test('swapEpisodes', () => {
 
 test('copyEpisodes', () => {
   const copiedEpisodes = copyEpisodes(episodes);
-  expect(copiedEpisodes).toStrictEqual(episodes)
-  expect(copiedEpisodes).not.toBe(episodes)
+  expect(copiedEpisodes).toStrictEqual(episodes);
+  expect(copiedEpisodes).not.toBe(episodes);
 });
 
 test('reverseEpisodes', () => {
