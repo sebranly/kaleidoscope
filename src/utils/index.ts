@@ -50,41 +50,40 @@ const getNumberEmoji = (nb: number) => {
   }
 };
 
-const filterNonLinearEpisodes = (episodes: Episode[]) => {
-  // The finale has to be watched last
-  const nonLinearEpisodes = episodes.slice(0, EPISODE_COUNT - 1);
+const copyEpisodes = (episodes: Episode[]) => {
+  const copiedEpisodes = episodes.slice(0, EPISODE_COUNT);
 
-  return nonLinearEpisodes;
+  return copiedEpisodes;
 };
 
 const shuffleEpisodes = (episodes: Episode[]) => {
-  const nonLinearEpisodes = filterNonLinearEpisodes(episodes);
-  const shuffledEpisodes = nonLinearEpisodes.sort(() => Math.random() - 0.5);
+  const copiedEpisodes = copyEpisodes(episodes);
+  const shuffledEpisodes = copiedEpisodes.sort(() => Math.random() - 0.5);
 
-  return [...shuffledEpisodes, episodes[EPISODE_COUNT - 1]];
+  return shuffledEpisodes;
 };
 
 const sortToDefaultEpisodes = (episodes: Episode[]) => {
-  const nonLinearEpisodes = filterNonLinearEpisodes(episodes);
-  const defaultEpisodes = nonLinearEpisodes.sort((ep1: Episode, ep2: Episode) => ep1.defaultNumber - ep2.defaultNumber);
+  const copiedEpisodes = copyEpisodes(episodes);
+  const defaultEpisodes = copiedEpisodes.sort((ep1: Episode, ep2: Episode) => ep1.defaultNumber - ep2.defaultNumber);
 
-  return [...defaultEpisodes, episodes[EPISODE_COUNT - 1]];
+  return defaultEpisodes;
 };
 
 const sortToChronologicalEpisodes = (episodes: Episode[]) => {
-  const nonLinearEpisodes = filterNonLinearEpisodes(episodes);
-  const chronologicalEpisodes = nonLinearEpisodes.sort(
+  const copiedEpisodes = copyEpisodes(episodes);
+  const chronologicalEpisodes = copiedEpisodes.sort(
     (ep1: Episode, ep2: Episode) => ep1.hoursFromHeist - ep2.hoursFromHeist
   );
 
-  return [...chronologicalEpisodes, episodes[EPISODE_COUNT - 1]];
+  return chronologicalEpisodes;
 };
 
 const reverseEpisodes = (episodes: Episode[]) => {
-  const nonLinearEpisodes = filterNonLinearEpisodes(episodes);
-  const reversedEpisodes = nonLinearEpisodes.reverse();
+  const copiedEpisodes = copyEpisodes(episodes);
+  const reversedEpisodes = copiedEpisodes.reverse();
 
-  return [...reversedEpisodes, episodes[EPISODE_COUNT - 1]];
+  return reversedEpisodes;
 };
 
 const swapEpisodes = (episodes: Episode[], direction: Direction, index: number) => {
@@ -92,14 +91,14 @@ const swapEpisodes = (episodes: Episode[], direction: Direction, index: number) 
   const cannotGoDown = direction === Direction.Down && index >= EPISODE_COUNT - 2;
 
   if (cannotGoUp || cannotGoDown) return episodes;
-  const nonLinearEpisodes = filterNonLinearEpisodes(episodes);
+  const copiedEpisodes = copyEpisodes(episodes);
 
   const delta = direction === Direction.Up ? -1 : 1;
-  const episodeTemp = nonLinearEpisodes[index];
-  nonLinearEpisodes[index] = nonLinearEpisodes[index + delta];
-  nonLinearEpisodes[index + delta] = episodeTemp;
+  const episodeTemp = copiedEpisodes[index];
+  copiedEpisodes[index] = copiedEpisodes[index + delta];
+  copiedEpisodes[index + delta] = episodeTemp;
 
-  return [...nonLinearEpisodes, episodes[EPISODE_COUNT - 1]];
+  return copiedEpisodes;
 };
 
 const pluralize = (str: string, nb: number) => {
@@ -139,7 +138,7 @@ const convertToTwoDigits = (nb: number) => {
 export {
   convertSecondsToUnits,
   convertToTwoDigits,
-  filterNonLinearEpisodes,
+  copyEpisodes,
   getCurrentTimestamp,
   getHeartEmoji,
   getNumberEmoji,
