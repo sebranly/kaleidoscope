@@ -6,6 +6,7 @@ import {
   getEpisodeByColor,
   getHeartEmoji,
   getNumberEmoji,
+  netflixShuffleEpisodes,
   pluralize,
   reverseEpisodes,
   shuffleEpisodes,
@@ -107,6 +108,12 @@ test('getEpisodeByColor', () => {
 test('shuffleEpisodes', () => {
   const shuffledEpisodes = shuffleEpisodes(episodes);
   expect(shuffledEpisodes).toHaveLength(8);
+});
+
+test('netflixShuffleEpisodes', () => {
+  const netflixShuffledEpisodes = netflixShuffleEpisodes(episodes);
+  expect(netflixShuffledEpisodes).toHaveLength(8);
+  expect(netflixShuffledEpisodes[7]).toStrictEqual(episodes[7]);
 });
 
 test('swapEpisodes', () => {

@@ -245,6 +245,16 @@ li span {
   margin-top: 5px;
 }
 
+.button-netflix-enabled {
+  background-color: rgb(145, 7, 7);
+  cursor: pointer;
+  border: none;
+}
+
+.button-netflix-enabled:hover {
+  background-color: rgb(183, 1, 1);
+}
+
 .button-enabled {
   background-color: #1f79e8;
   cursor: pointer;

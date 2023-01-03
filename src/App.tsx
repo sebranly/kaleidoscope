@@ -12,7 +12,8 @@ import {
   sortToChronologicalEpisodes,
   sortToDefaultEpisodes,
   sortToRainbowEpisodes,
-  shuffleEpisodes
+  shuffleEpisodes,
+  netflixShuffleEpisodes
 } from './utils';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Confetti from 'react-confetti';
@@ -21,7 +22,7 @@ import { CountDownTimer } from './components/CountDownTimer';
 
 function App() {
   const [shareableEpisodes, setShareableEpisodes] = React.useState(EPISODE_COUNT);
-  const [episodesList, setEpisodesList] = React.useState<Episode[]>(shuffleEpisodes(episodes));
+  const [episodesList, setEpisodesList] = React.useState<Episode[]>(netflixShuffleEpisodes(episodes));
   const [copiedWatchOrder, setCopiedWatchOrder] = React.useState(false);
 
   const { width } = useWindowSize();
@@ -77,7 +78,7 @@ function App() {
             .
           </div>
           <div className="introduction-line">
-            Although the <i>finale is recommended last</i>, the episodes can be watched in any order.
+            Although <i>the finale is recommended last</i>, the episodes can be watched in any order.
           </div>
           <div className="introduction-line">
             This webpage allows you to{' '}
@@ -94,10 +95,22 @@ function App() {
         <h2>Episodes Watch List</h2>
         <div className="episodes-watch-order-introduction">
           <div className="episodes-watch-order-introduction-line">
-            A viewing order has been selected randomly for you
+            A recommended viewing order has been selected for you
           </div>
           <div className="episodes-watch-order-introduction-line">
-            The buttons below allow you to select a different sort
+            The buttons below allow you to select a different one
+          </div>
+          <div className="episodes-watch-order-introduction-line">
+            "Netflix Shuffle" is explained in the 3rd paragraph of the{' '}
+            <a
+              className="link-netflix"
+              href="https://media.netflix.com/en/only-on-netflix/80992058"
+              rel="noopener noreferrer"
+              title="Official Netflix article explaining what the shuffle logic for Kaleidoscope is"
+              target="_blank"
+            >
+              synopsis
+            </a>
           </div>
           <div className="inline-block buttons">
             <button
@@ -120,15 +133,21 @@ function App() {
             </button>
             <button
               className="basic-button sort-button button-enabled"
+              onClick={() => setEpisodesList(reverseEpisodes(episodesList))}
+            >
+              🔄 Reverse
+            </button>
+            <button
+              className="basic-button sort-button button-enabled"
               onClick={() => setEpisodesList(shuffleEpisodes(episodesList))}
             >
               🔀 Shuffle
             </button>
             <button
-              className="basic-button sort-button button-enabled"
-              onClick={() => setEpisodesList(reverseEpisodes(episodesList))}
+              className="basic-button sort-button button-netflix-enabled"
+              onClick={() => setEpisodesList(netflixShuffleEpisodes(episodesList))}
             >
-              🔄 Reverse
+              🎬 Netflix Shuffle
             </button>
           </div>
           <div className="episodes-watch-order-introduction-line">

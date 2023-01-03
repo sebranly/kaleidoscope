@@ -68,6 +68,31 @@ const shuffleEpisodes = (episodes: Episode[]) => {
   return shuffledEpisodes;
 };
 
+// Source: https://media.netflix.com/en/only-on-netflix/80992058
+/*
+  The compelling crime anthology series takes a non-linear approach to storytelling,
+  building intrigue and suspense uniquely, with Netflix members each having a different immersive viewing experience.
+  Some members may start with certain episodes (like episodes “Yellow or “Green”),
+  then move deeper into their own personal viewing order with varying episodes
+  (“Blue” or “Violet” or “Orange,” followed by “Red” or “Pink”)
+  until the epic “White: The Heist” story finale.
+*/
+const netflixShuffleEpisodes = (episodes: Episode[]) => {
+  const copiedEpisodes = copyEpisodes(episodes);
+
+  const [yellow, green, blue, violet, orange, red, pink, white] = [Color.Yellow, Color.Green, Color.Blue, Color.Violet, Color.Orange, Color.Red, Color.Pink, Color.White].map((color: Color) => {
+    const colorEpisode = getEpisodeByColor(copiedEpisodes, color);
+
+    return colorEpisode!;
+  });
+
+  const firstGroup = shuffleEpisodes([yellow, green]);
+  const secondGroup = shuffleEpisodes([blue, violet, orange])
+  const thirdGroup = shuffleEpisodes([red, pink]);
+
+  return [...firstGroup, ...secondGroup, ...thirdGroup, white];
+};
+
 const sortToDefaultEpisodes = (episodes: Episode[]) => {
   const copiedEpisodes = copyEpisodes(episodes);
   const defaultEpisodes = copiedEpisodes.sort((ep1: Episode, ep2: Episode) => ep1.defaultNumber - ep2.defaultNumber);
@@ -78,16 +103,9 @@ const sortToDefaultEpisodes = (episodes: Episode[]) => {
 const sortToRainbowEpisodes = (episodes: Episode[]) => {
   const copiedEpisodes = copyEpisodes(episodes);
 
-  const rainbowEpisodes = [
-    getEpisodeByColor(copiedEpisodes, Color.Red)!,
-    getEpisodeByColor(copiedEpisodes, Color.Orange)!,
-    getEpisodeByColor(copiedEpisodes, Color.Yellow)!,
-    getEpisodeByColor(copiedEpisodes, Color.Green)!,
-    getEpisodeByColor(copiedEpisodes, Color.Blue)!,
-    getEpisodeByColor(copiedEpisodes, Color.Violet)!,
-    getEpisodeByColor(copiedEpisodes, Color.Pink)!,
-    getEpisodeByColor(copiedEpisodes, Color.White)!,
-  ];
+  const rainbowEpisodes = [Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Blue, Color.Violet, Color.Pink, Color.White].map((color: Color) => {
+    return getEpisodeByColor(copiedEpisodes, color)!;
+  });
 
   return rainbowEpisodes;
 }
@@ -165,6 +183,7 @@ export {
   getEpisodeByColor,
   getHeartEmoji,
   getNumberEmoji,
+  netflixShuffleEpisodes,
   pluralize,
   reverseEpisodes,
   shuffleEpisodes,
