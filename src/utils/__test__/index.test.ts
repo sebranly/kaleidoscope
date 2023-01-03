@@ -2,14 +2,16 @@ import { Color, Direction, Episode } from '../../types';
 import {
   convertSecondsToUnits,
   convertToTwoDigits,
-  filterNonLinearEpisodes,
+  copyEpisodes,
+  getEpisodeByColor,
   getHeartEmoji,
-  getNumberEmoji,
+  netflixShuffleEpisodes,
   pluralize,
   reverseEpisodes,
   shuffleEpisodes,
   sortToChronologicalEpisodes,
   sortToDefaultEpisodes,
+  sortToRainbowEpisodes,
   swapEpisodes
 } from '../index';
 
@@ -58,7 +60,13 @@ const episodes: Episode[] = [
     title: 'The Morning After The Heist',
     writers: ['somebody']
   },
-  { color: Color.Pink, defaultNumber: 7, hoursFromHeist: 6 * 30 * 24, title: '6 Months After', writers: ['somebody'] },
+  {
+    color: Color.Pink,
+    defaultNumber: 7,
+    hoursFromHeist: 6 * 30 * 24,
+    title: '6 Months After The Heist',
+    writers: ['somebody']
+  },
   {
     color: Color.White,
     defaultNumber: 8,
@@ -79,28 +87,26 @@ test('getHeartEmoji', () => {
   expect(getHeartEmoji(Color.White)).toBe('🤍');
 });
 
-test('getNumberEmoji', () => {
-  expect(getNumberEmoji(1)).toBe('1️⃣');
-  expect(getNumberEmoji(2)).toBe('2️⃣');
-  expect(getNumberEmoji(3)).toBe('3️⃣');
-  expect(getNumberEmoji(4)).toBe('4️⃣');
-  expect(getNumberEmoji(5)).toBe('5️⃣');
-  expect(getNumberEmoji(6)).toBe('6️⃣');
-  expect(getNumberEmoji(7)).toBe('7️⃣');
-  expect(getNumberEmoji(8)).toBe('8️⃣');
-  expect(getNumberEmoji(9)).toBe('#️⃣');
+test('getEpisodeByColor', () => {
+  const redEpisode = getEpisodeByColor(episodes, Color.Red);
+  expect(redEpisode).toStrictEqual({
+    color: Color.Red,
+    defaultNumber: 6,
+    hoursFromHeist: 12,
+    title: 'The Morning After The Heist',
+    writers: ['somebody']
+  });
 });
 
 test('shuffleEpisodes', () => {
   const shuffledEpisodes = shuffleEpisodes(episodes);
   expect(shuffledEpisodes).toHaveLength(8);
-  expect(shuffledEpisodes[7]).toStrictEqual({
-    color: Color.White,
-    defaultNumber: 8,
-    hoursFromHeist: 0,
-    title: 'Finale: The Heist',
-    writers: ['somebody', 'somebody']
-  });
+});
+
+test('netflixShuffleEpisodes', () => {
+  const netflixShuffledEpisodes = netflixShuffleEpisodes(episodes);
+  expect(netflixShuffledEpisodes).toHaveLength(8);
+  expect(netflixShuffledEpisodes[7]).toStrictEqual(episodes[7]);
 });
 
 test('swapEpisodes', () => {
@@ -121,31 +127,24 @@ test('swapEpisodes', () => {
   expect(swappedEpisodes[8]).toStrictEqual(episodes[8]);
 });
 
-test('filterNonLinearEpisodes', () => {
-  const nonLinearEpisodes = filterNonLinearEpisodes(episodes);
-  expect(nonLinearEpisodes).toHaveLength(7);
-
-  expect(nonLinearEpisodes[0]).toStrictEqual(episodes[0]);
-  expect(nonLinearEpisodes[1]).toStrictEqual(episodes[1]);
-  expect(nonLinearEpisodes[2]).toStrictEqual(episodes[2]);
-  expect(nonLinearEpisodes[3]).toStrictEqual(episodes[3]);
-  expect(nonLinearEpisodes[4]).toStrictEqual(episodes[4]);
-  expect(nonLinearEpisodes[5]).toStrictEqual(episodes[5]);
-  expect(nonLinearEpisodes[6]).toStrictEqual(episodes[6]);
+test('copyEpisodes', () => {
+  const copiedEpisodes = copyEpisodes(episodes);
+  expect(copiedEpisodes).toStrictEqual(episodes);
+  expect(copiedEpisodes).not.toBe(episodes);
 });
 
 test('reverseEpisodes', () => {
   const reversedEpisodes = reverseEpisodes(episodes);
   expect(reversedEpisodes).toHaveLength(8);
 
-  expect(reversedEpisodes[0]).toStrictEqual(episodes[6]);
-  expect(reversedEpisodes[1]).toStrictEqual(episodes[5]);
-  expect(reversedEpisodes[2]).toStrictEqual(episodes[4]);
-  expect(reversedEpisodes[3]).toStrictEqual(episodes[3]);
-  expect(reversedEpisodes[4]).toStrictEqual(episodes[2]);
-  expect(reversedEpisodes[5]).toStrictEqual(episodes[1]);
-  expect(reversedEpisodes[6]).toStrictEqual(episodes[0]);
-  expect(reversedEpisodes[7]).toStrictEqual(episodes[7]);
+  expect(reversedEpisodes[0]).toStrictEqual(episodes[7]);
+  expect(reversedEpisodes[1]).toStrictEqual(episodes[6]);
+  expect(reversedEpisodes[2]).toStrictEqual(episodes[5]);
+  expect(reversedEpisodes[3]).toStrictEqual(episodes[4]);
+  expect(reversedEpisodes[4]).toStrictEqual(episodes[3]);
+  expect(reversedEpisodes[5]).toStrictEqual(episodes[2]);
+  expect(reversedEpisodes[6]).toStrictEqual(episodes[1]);
+  expect(reversedEpisodes[7]).toStrictEqual(episodes[0]);
 });
 
 test('sortToDefaultEpisodes', () => {
@@ -163,9 +162,23 @@ test('sortToChronologicalEpisodes', () => {
   expect(chronologicalEpisodes[2]).toStrictEqual(episodes[0]);
   expect(chronologicalEpisodes[3]).toStrictEqual(episodes[4]);
   expect(chronologicalEpisodes[4]).toStrictEqual(episodes[2]);
-  expect(chronologicalEpisodes[5]).toStrictEqual(episodes[5]);
-  expect(chronologicalEpisodes[6]).toStrictEqual(episodes[6]);
-  expect(chronologicalEpisodes[7]).toStrictEqual(episodes[7]);
+  expect(chronologicalEpisodes[5]).toStrictEqual(episodes[7]);
+  expect(chronologicalEpisodes[6]).toStrictEqual(episodes[5]);
+  expect(chronologicalEpisodes[7]).toStrictEqual(episodes[6]);
+});
+
+test('sortToRainbowEpisodes', () => {
+  const rainbowEpisodes = sortToRainbowEpisodes(episodes);
+  expect(rainbowEpisodes).toHaveLength(8);
+
+  expect(rainbowEpisodes[0]).toStrictEqual(episodes[5]);
+  expect(rainbowEpisodes[1]).toStrictEqual(episodes[4]);
+  expect(rainbowEpisodes[2]).toStrictEqual(episodes[0]);
+  expect(rainbowEpisodes[3]).toStrictEqual(episodes[1]);
+  expect(rainbowEpisodes[4]).toStrictEqual(episodes[2]);
+  expect(rainbowEpisodes[5]).toStrictEqual(episodes[3]);
+  expect(rainbowEpisodes[6]).toStrictEqual(episodes[6]);
+  expect(rainbowEpisodes[7]).toStrictEqual(episodes[7]);
 });
 
 test('pluralize', () => {

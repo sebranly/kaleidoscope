@@ -7,11 +7,12 @@ import { Episode } from './types';
 import { EpisodeBlock } from './components/EpisodeBlock';
 import {
   getHeartEmoji,
-  getNumberEmoji,
   reverseEpisodes,
   sortToChronologicalEpisodes,
   sortToDefaultEpisodes,
-  shuffleEpisodes
+  sortToRainbowEpisodes,
+  shuffleEpisodes,
+  netflixShuffleEpisodes
 } from './utils';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Confetti from 'react-confetti';
@@ -20,7 +21,7 @@ import { CountDownTimer } from './components/CountDownTimer';
 
 function App() {
   const [shareableEpisodes, setShareableEpisodes] = React.useState(EPISODE_COUNT);
-  const [episodesList, setEpisodesList] = React.useState<Episode[]>(shuffleEpisodes(episodes));
+  const [episodesList, setEpisodesList] = React.useState<Episode[]>(netflixShuffleEpisodes(episodes));
   const [copiedWatchOrder, setCopiedWatchOrder] = React.useState(false);
 
   const { width } = useWindowSize();
@@ -30,12 +31,7 @@ function App() {
     .map((ep: Episode) => getHeartEmoji(ep.color))
     .join('');
 
-  const episodesNumbersEmojis = episodesList
-    .slice(0, shareableEpisodes)
-    .map((ep: Episode) => getNumberEmoji(ep.defaultNumber))
-    .join('');
-
-  const sharingText = `Get your unique Kaleidoscope viewing order on: ${WEBSITE_URL}\n\nMine is:\n${episodesHeartEmoji}\n${episodesNumbersEmojis}\n\n#kaleidoscope #netflix\n\n`;
+  const sharingText = `Get your unique Kaleidoscope viewing order on: ${WEBSITE_URL}\n\nMine is:\n${episodesHeartEmoji}\n\n#kaleidoscope #netflix\n\n`;
   const classnamesCopy = copiedWatchOrder ? 'button-disabled' : 'button-enabled';
 
   React.useEffect(() => {
@@ -76,7 +72,7 @@ function App() {
             .
           </div>
           <div className="introduction-line">
-            The first 7 episodes can be watched in any order. Then the finale unlocks.
+            Although <i>the finale is recommended last</i>, the episodes can be watched in any order.
           </div>
           <div className="introduction-line">
             This webpage allows you to{' '}
@@ -85,7 +81,7 @@ function App() {
                 <i>create and share</i>
               </div>
             </b>{' '}
-            a viewing order among the 5040 viewing possibilities!
+            a viewing order among the 40320 viewing possibilities!
           </div>
           <CountDownTimer endTime={SHOW_RELEASE_DATE_PT} />
         </div>
@@ -93,10 +89,22 @@ function App() {
         <h2>Episodes Watch List</h2>
         <div className="episodes-watch-order-introduction">
           <div className="episodes-watch-order-introduction-line">
-            A viewing order has been selected randomly for you
+            A recommended viewing order has been selected for you
           </div>
           <div className="episodes-watch-order-introduction-line">
-            The buttons below allow you to select a different sort
+            The buttons below allow you to select a different one
+          </div>
+          <div className="episodes-watch-order-introduction-line">
+            "Netflix Shuffle" is explained in the 3rd paragraph of the{' '}
+            <a
+              className="link-netflix"
+              href="https://media.netflix.com/en/only-on-netflix/80992058"
+              rel="noopener noreferrer"
+              title="Official Netflix article explaining what the shuffle logic for Kaleidoscope is"
+              target="_blank"
+            >
+              synopsis
+            </a>
           </div>
           <div className="inline-block buttons">
             <button
@@ -113,9 +121,9 @@ function App() {
             </button>
             <button
               className="basic-button sort-button button-enabled"
-              onClick={() => setEpisodesList(shuffleEpisodes(episodesList))}
+              onClick={() => setEpisodesList(sortToRainbowEpisodes(episodesList))}
             >
-              🔀 Shuffle
+              🌈 Rainbow
             </button>
             <button
               className="basic-button sort-button button-enabled"
@@ -123,9 +131,21 @@ function App() {
             >
               🔄 Reverse
             </button>
+            <button
+              className="basic-button sort-button button-enabled"
+              onClick={() => setEpisodesList(shuffleEpisodes(episodesList))}
+            >
+              🔀 Shuffle
+            </button>
+            <button
+              className="basic-button sort-button button-netflix-enabled"
+              onClick={() => setEpisodesList(netflixShuffleEpisodes(episodesList))}
+            >
+              🎬 Netflix Shuffle
+            </button>
           </div>
           <div className="episodes-watch-order-introduction-line">
-            Interact with 🔼 and 🔽 to change the order of one specific episode (except the finale)
+            Interact with 🔼 and 🔽 to change the order of one specific episode
           </div>
         </div>
         <div className="episodes-list">
@@ -157,7 +177,6 @@ function App() {
             />
           </div>
           <div className="episodes-watch-order-line">{episodesHeartEmoji}</div>
-          <div className="episodes-watch-order-line">{episodesNumbersEmojis}</div>
           <br />
           <CopyToClipboard options={{ message: '' }} text={sharingText} onCopy={() => setCopiedWatchOrder(true)}>
             <button className={`basic-button ${classnamesCopy}`} disabled={copiedWatchOrder}>

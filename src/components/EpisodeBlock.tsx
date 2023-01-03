@@ -16,7 +16,6 @@ const EpisodeBlock: React.FC<EpisodeBlockProps> = (props) => {
 
   const writersCopy = pluralize('Writer', writers.length);
   const isFirst = index === 0;
-  const isOneBeforeLast = index === EPISODE_COUNT - 2;
   const isLast = index === EPISODE_COUNT - 1;
 
   const onClick = (direction: Direction) => {
@@ -28,14 +27,13 @@ const EpisodeBlock: React.FC<EpisodeBlockProps> = (props) => {
   return (
     <div className="episode-block">
       <div className="episode-header">
-        {!isFirst && !isLast && (
+        {!isFirst && (
           <button className="episode-arrow episode-up" onClick={() => onClick(Direction.Up)}>
             🔼
           </button>
         )}
-        {isLast && <div className="episode-locked">🔒</div>}
         <>{title}</>
-        {!isOneBeforeLast && !isLast && (
+        {!isLast && (
           <button className="episode-arrow episode-down" onClick={() => onClick(Direction.Down)}>
             🔽
           </button>

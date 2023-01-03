@@ -27,79 +27,113 @@ const getHeartEmoji = (color: Color) => {
   }
 };
 
-const getNumberEmoji = (nb: number) => {
-  switch (nb) {
-    case 1:
-      return '1️⃣';
-    case 2:
-      return '2️⃣';
-    case 3:
-      return '3️⃣';
-    case 4:
-      return '4️⃣';
-    case 5:
-      return '5️⃣';
-    case 6:
-      return '6️⃣';
-    case 7:
-      return '7️⃣';
-    case 8:
-      return '8️⃣';
-    default:
-      return '#️⃣';
-  }
+const copyEpisodes = (episodes: Episode[]) => {
+  const copiedEpisodes = episodes.slice(0, EPISODE_COUNT);
+
+  return copiedEpisodes;
 };
 
-const filterNonLinearEpisodes = (episodes: Episode[]) => {
-  // The finale has to be watched last
-  const nonLinearEpisodes = episodes.slice(0, EPISODE_COUNT - 1);
-
-  return nonLinearEpisodes;
+const getEpisodeByColor = (episodes: Episode[], color: Color) => {
+  const colorEpisode = episodes.filter((episode: Episode) => episode.color === color);
+  return colorEpisode.length ? colorEpisode[0] : null;
 };
 
 const shuffleEpisodes = (episodes: Episode[]) => {
-  const nonLinearEpisodes = filterNonLinearEpisodes(episodes);
-  const shuffledEpisodes = nonLinearEpisodes.sort(() => Math.random() - 0.5);
+  const copiedEpisodes = copyEpisodes(episodes);
+  const shuffledEpisodes = copiedEpisodes.sort(() => Math.random() - 0.5);
 
-  return [...shuffledEpisodes, episodes[EPISODE_COUNT - 1]];
+  return shuffledEpisodes;
+};
+
+// Source: https://media.netflix.com/en/only-on-netflix/80992058
+/*
+  The compelling crime anthology series takes a non-linear approach to storytelling,
+  building intrigue and suspense uniquely, with Netflix members each having a different immersive viewing experience.
+  Some members may start with certain episodes (like episodes “Yellow or “Green”),
+  then move deeper into their own personal viewing order with varying episodes
+  (“Blue” or “Violet” or “Orange,” followed by “Red” or “Pink”)
+  until the epic “White: The Heist” story finale.
+*/
+const netflixShuffleEpisodes = (episodes: Episode[]) => {
+  const copiedEpisodes = copyEpisodes(episodes);
+
+  const [yellow, green, blue, violet, orange, red, pink, white] = [
+    Color.Yellow,
+    Color.Green,
+    Color.Blue,
+    Color.Violet,
+    Color.Orange,
+    Color.Red,
+    Color.Pink,
+    Color.White
+  ].map((color: Color) => {
+    const colorEpisode = getEpisodeByColor(copiedEpisodes, color);
+
+    return colorEpisode!;
+  });
+
+  const firstGroup = shuffleEpisodes([yellow, green]);
+  const secondGroup = shuffleEpisodes([blue, violet, orange]);
+  const thirdGroup = shuffleEpisodes([red, pink]);
+
+  return [...firstGroup, ...secondGroup, ...thirdGroup, white];
 };
 
 const sortToDefaultEpisodes = (episodes: Episode[]) => {
-  const nonLinearEpisodes = filterNonLinearEpisodes(episodes);
-  const defaultEpisodes = nonLinearEpisodes.sort((ep1: Episode, ep2: Episode) => ep1.defaultNumber - ep2.defaultNumber);
+  const copiedEpisodes = copyEpisodes(episodes);
+  const defaultEpisodes = copiedEpisodes.sort((ep1: Episode, ep2: Episode) => ep1.defaultNumber - ep2.defaultNumber);
 
-  return [...defaultEpisodes, episodes[EPISODE_COUNT - 1]];
+  return defaultEpisodes;
+};
+
+const sortToRainbowEpisodes = (episodes: Episode[]) => {
+  const copiedEpisodes = copyEpisodes(episodes);
+
+  const rainbowEpisodes = [
+    Color.Red,
+    Color.Orange,
+    Color.Yellow,
+    Color.Green,
+    Color.Blue,
+    Color.Violet,
+    Color.Pink,
+    Color.White
+  ].map((color: Color) => {
+    return getEpisodeByColor(copiedEpisodes, color)!;
+  });
+
+  return rainbowEpisodes;
 };
 
 const sortToChronologicalEpisodes = (episodes: Episode[]) => {
-  const nonLinearEpisodes = filterNonLinearEpisodes(episodes);
-  const chronologicalEpisodes = nonLinearEpisodes.sort(
+  const copiedEpisodes = copyEpisodes(episodes);
+  const chronologicalEpisodes = copiedEpisodes.sort(
     (ep1: Episode, ep2: Episode) => ep1.hoursFromHeist - ep2.hoursFromHeist
   );
 
-  return [...chronologicalEpisodes, episodes[EPISODE_COUNT - 1]];
+  return chronologicalEpisodes;
 };
 
 const reverseEpisodes = (episodes: Episode[]) => {
-  const nonLinearEpisodes = filterNonLinearEpisodes(episodes);
-  const reversedEpisodes = nonLinearEpisodes.reverse();
+  const copiedEpisodes = copyEpisodes(episodes);
+  const reversedEpisodes = copiedEpisodes.reverse();
 
-  return [...reversedEpisodes, episodes[EPISODE_COUNT - 1]];
+  return reversedEpisodes;
 };
 
 const swapEpisodes = (episodes: Episode[], direction: Direction, index: number) => {
   const cannotGoUp = direction === Direction.Up && index <= 0;
-  const cannotGoDown = direction === Direction.Down && index >= EPISODE_COUNT - 2;
+  const cannotGoDown = direction === Direction.Down && index >= EPISODE_COUNT - 1;
 
   if (cannotGoUp || cannotGoDown) return episodes;
-  const nonLinearEpisodes = filterNonLinearEpisodes(episodes);
+  const copiedEpisodes = copyEpisodes(episodes);
 
   const delta = direction === Direction.Up ? -1 : 1;
-  const episodeTemp = nonLinearEpisodes[index];
-  nonLinearEpisodes[index] = nonLinearEpisodes[index + delta];
-  nonLinearEpisodes[index + delta] = episodeTemp;
+  const episodeTemp = copiedEpisodes[index];
+  copiedEpisodes[index] = copiedEpisodes[index + delta];
+  copiedEpisodes[index + delta] = episodeTemp;
 
-  return [...nonLinearEpisodes, episodes[EPISODE_COUNT - 1]];
+  return copiedEpisodes;
 };
 
 const pluralize = (str: string, nb: number) => {
@@ -136,17 +170,38 @@ const convertToTwoDigits = (nb: number) => {
   return `${nb}`;
 };
 
+const getRandomColor = () => {
+  const colors = [
+    Color.Blue,
+    Color.Green,
+    Color.Orange,
+    Color.Pink,
+    Color.Red,
+    Color.Violet,
+    Color.White,
+    Color.Yellow
+  ];
+
+  const randomIndex = Math.floor(Math.random() * colors.length);
+  const randomColor = colors[randomIndex];
+
+  return randomColor;
+};
+
 export {
   convertSecondsToUnits,
   convertToTwoDigits,
-  filterNonLinearEpisodes,
+  copyEpisodes,
   getCurrentTimestamp,
+  getEpisodeByColor,
   getHeartEmoji,
-  getNumberEmoji,
+  getRandomColor,
+  netflixShuffleEpisodes,
   pluralize,
   reverseEpisodes,
   shuffleEpisodes,
   sortToChronologicalEpisodes,
   sortToDefaultEpisodes,
+  sortToRainbowEpisodes,
   swapEpisodes
 };
