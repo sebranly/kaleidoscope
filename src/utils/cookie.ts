@@ -1,11 +1,11 @@
-import { EPISODE_COUNT } from "../constants/general";
-import { Color, Episode } from "../types";
+import { EPISODE_COUNT } from '../constants/general';
+import { Color, Episode } from '../types';
 import { episodes } from '../data/index';
-import { getEpisodeByColor } from ".";
+import { getEpisodeByColor } from '.';
 
 const convertEpisodesToColors = (episodes: Episode[]) => {
   return episodes.map((episode: Episode) => episode.color);
-}
+};
 
 const sanitizeEpisodesOrderCookie = (cookieValue: any) => {
   if (!cookieValue) return null;
@@ -17,10 +17,10 @@ const sanitizeEpisodesOrderCookie = (cookieValue: any) => {
   if (hasANonString) return null;
 
   const allColors = episodes.map((episode: Episode) => episode.color);
-  const hasANonColor = cookieValue.some((value: any) => !allColors.includes(value));   
+  const hasANonColor = cookieValue.some((value: any) => !allColors.includes(value));
 
   if (hasANonColor) return null;
-  
+
   const hasAnAbsentColor = allColors.some((color: Color) => !cookieValue.includes(color));
 
   if (hasAnAbsentColor) return null;
@@ -29,12 +29,12 @@ const sanitizeEpisodesOrderCookie = (cookieValue: any) => {
     return getEpisodeByColor(episodes, cookieColor);
   });
 
-  const hasNullValue = episodesList.some((episode: Episode | null) => episode === null);
+  const hasNullValue = episodesList.some((episode: Episode | null) => episode === null);
 
   if (hasNullValue) return null;
 
   return episodesList as Episode[];
-}
+};
 
 const sanitizeEpisodesCountCookie = (cookieValue: any) => {
   if (!cookieValue) return EPISODE_COUNT;
@@ -46,6 +46,6 @@ const sanitizeEpisodesCountCookie = (cookieValue: any) => {
   if (cookieNumberValue < 1 || cookieNumberValue > EPISODE_COUNT) return EPISODE_COUNT;
 
   return cookieNumberValue;
-}
+};
 
 export { convertEpisodesToColors, sanitizeEpisodesCountCookie, sanitizeEpisodesOrderCookie };

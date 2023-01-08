@@ -98,7 +98,7 @@ test('getEpisodeByColor', () => {
   });
 
   const noEpisode = getEpisodeByColor([], Color.Red);
-  expect(noEpisode).toBeNull()
+  expect(noEpisode).toBeNull();
 });
 
 test('shuffleEpisodes', () => {

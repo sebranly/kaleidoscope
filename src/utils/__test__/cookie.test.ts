@@ -1,6 +1,6 @@
 import { EPISODE_COUNT } from '../../constants/general';
 import { Color, Episode } from '../../types';
-import {convertEpisodesToColors, sanitizeEpisodesCountCookie, sanitizeEpisodesOrderCookie } from '../cookie';
+import { convertEpisodesToColors, sanitizeEpisodesCountCookie, sanitizeEpisodesOrderCookie } from '../cookie';
 
 const episodes: Episode[] = [
   {
@@ -65,85 +65,88 @@ const episodes: Episode[] = [
 
 test('convertEpisodesToColors', () => {
   expect(convertEpisodesToColors(episodes)).toStrictEqual([
-    Color.White, Color.Yellow, Color.Green, Color.Blue, Color.Violet, Color.Orange, Color.Red, Color.Pink, 
-  ])
+    Color.White,
+    Color.Yellow,
+    Color.Green,
+    Color.Blue,
+    Color.Violet,
+    Color.Orange,
+    Color.Red,
+    Color.Pink
+  ]);
 });
 
 test('sanitizeEpisodesOrderCookie', () => {
-  expect(sanitizeEpisodesOrderCookie(null)).toBeNull()
-  expect(sanitizeEpisodesOrderCookie('')).toBeNull()
-  expect(sanitizeEpisodesOrderCookie(0)).toBeNull()
-  expect(sanitizeEpisodesOrderCookie('0')).toBeNull()
-  expect(sanitizeEpisodesOrderCookie([])).toBeNull()
-  expect(sanitizeEpisodesOrderCookie(undefined)).toBeNull()
-  expect(sanitizeEpisodesOrderCookie({})).toBeNull()
+  expect(sanitizeEpisodesOrderCookie(null)).toBeNull();
+  expect(sanitizeEpisodesOrderCookie('')).toBeNull();
+  expect(sanitizeEpisodesOrderCookie(0)).toBeNull();
+  expect(sanitizeEpisodesOrderCookie('0')).toBeNull();
+  expect(sanitizeEpisodesOrderCookie([])).toBeNull();
+  expect(sanitizeEpisodesOrderCookie(undefined)).toBeNull();
+  expect(sanitizeEpisodesOrderCookie({})).toBeNull();
 
-  expect(sanitizeEpisodesOrderCookie([null])).toBeNull()
-  expect(sanitizeEpisodesOrderCookie([''])).toBeNull()
-  expect(sanitizeEpisodesOrderCookie([0])).toBeNull()
-  expect(sanitizeEpisodesOrderCookie(['0'])).toBeNull()
-  expect(sanitizeEpisodesOrderCookie([[]])).toBeNull()
-  expect(sanitizeEpisodesOrderCookie([undefined])).toBeNull()
-  expect(sanitizeEpisodesOrderCookie([{}])).toBeNull()
+  expect(sanitizeEpisodesOrderCookie([null])).toBeNull();
+  expect(sanitizeEpisodesOrderCookie([''])).toBeNull();
+  expect(sanitizeEpisodesOrderCookie([0])).toBeNull();
+  expect(sanitizeEpisodesOrderCookie(['0'])).toBeNull();
+  expect(sanitizeEpisodesOrderCookie([[]])).toBeNull();
+  expect(sanitizeEpisodesOrderCookie([undefined])).toBeNull();
+  expect(sanitizeEpisodesOrderCookie([{}])).toBeNull();
 
-  expect(sanitizeEpisodesOrderCookie([
-    'yellow', 'green', 'blue', 'violet', 'orange', 'red', 'pink'
-  ])).toBeNull()
+  expect(sanitizeEpisodesOrderCookie(['yellow', 'green', 'blue', 'violet', 'orange', 'red', 'pink'])).toBeNull();
 
-  expect(sanitizeEpisodesOrderCookie([
-    0, 'yellow', 'green', 'blue', 'violet', 'orange', 'red', 'pink'
-  ])).toBeNull()
+  expect(sanitizeEpisodesOrderCookie([0, 'yellow', 'green', 'blue', 'violet', 'orange', 'red', 'pink'])).toBeNull();
 
-  expect(sanitizeEpisodesOrderCookie([
-    'someimaginarycolor', 'yellow', 'green', 'blue', 'violet', 'orange', 'red', 'pink'
-  ])).toBeNull()
+  expect(
+    sanitizeEpisodesOrderCookie(['someimaginarycolor', 'yellow', 'green', 'blue', 'violet', 'orange', 'red', 'pink'])
+  ).toBeNull();
 
-  expect(sanitizeEpisodesOrderCookie([
-    'yellow', 'yellow', 'green', 'blue', 'violet', 'orange', 'red', 'pink'
-  ])).toBeNull()
+  expect(
+    sanitizeEpisodesOrderCookie(['yellow', 'yellow', 'green', 'blue', 'violet', 'orange', 'red', 'pink'])
+  ).toBeNull();
 
-  expect(sanitizeEpisodesOrderCookie([
-    'white', 'yellow', 'green', 'blue', 'violet', 'orange', 'red', 'pink'
-  ])).toStrictEqual(episodes)
+  expect(
+    sanitizeEpisodesOrderCookie(['white', 'yellow', 'green', 'blue', 'violet', 'orange', 'red', 'pink'])
+  ).toStrictEqual(episodes);
 });
 
 test('sanitizeEpisodesCountCookie', () => {
-  expect( sanitizeEpisodesCountCookie(null)).toBe(EPISODE_COUNT)
-   expect( sanitizeEpisodesCountCookie('')).toBe(EPISODE_COUNT)
-   expect( sanitizeEpisodesCountCookie(0)).toBe(EPISODE_COUNT)
-   expect( sanitizeEpisodesCountCookie('0')).toBe(EPISODE_COUNT)
-   expect( sanitizeEpisodesCountCookie([])).toBe(EPISODE_COUNT)
-   expect( sanitizeEpisodesCountCookie(undefined)).toBe(EPISODE_COUNT)
-   expect( sanitizeEpisodesCountCookie({})).toBe(EPISODE_COUNT)
+  expect(sanitizeEpisodesCountCookie(null)).toBe(EPISODE_COUNT);
+  expect(sanitizeEpisodesCountCookie('')).toBe(EPISODE_COUNT);
+  expect(sanitizeEpisodesCountCookie(0)).toBe(EPISODE_COUNT);
+  expect(sanitizeEpisodesCountCookie('0')).toBe(EPISODE_COUNT);
+  expect(sanitizeEpisodesCountCookie([])).toBe(EPISODE_COUNT);
+  expect(sanitizeEpisodesCountCookie(undefined)).toBe(EPISODE_COUNT);
+  expect(sanitizeEpisodesCountCookie({})).toBe(EPISODE_COUNT);
 
-   expect( sanitizeEpisodesCountCookie([null])).toBe(EPISODE_COUNT)
-   expect( sanitizeEpisodesCountCookie([''])).toBe(EPISODE_COUNT)
-   expect( sanitizeEpisodesCountCookie([0])).toBe(EPISODE_COUNT)
-   expect( sanitizeEpisodesCountCookie(['0'])).toBe(EPISODE_COUNT)
-   expect( sanitizeEpisodesCountCookie([[]])).toBe(EPISODE_COUNT)
-   expect( sanitizeEpisodesCountCookie([undefined])).toBe(EPISODE_COUNT)
-   expect( sanitizeEpisodesCountCookie([{}])).toBe(EPISODE_COUNT)
+  expect(sanitizeEpisodesCountCookie([null])).toBe(EPISODE_COUNT);
+  expect(sanitizeEpisodesCountCookie([''])).toBe(EPISODE_COUNT);
+  expect(sanitizeEpisodesCountCookie([0])).toBe(EPISODE_COUNT);
+  expect(sanitizeEpisodesCountCookie(['0'])).toBe(EPISODE_COUNT);
+  expect(sanitizeEpisodesCountCookie([[]])).toBe(EPISODE_COUNT);
+  expect(sanitizeEpisodesCountCookie([undefined])).toBe(EPISODE_COUNT);
+  expect(sanitizeEpisodesCountCookie([{}])).toBe(EPISODE_COUNT);
 
-   expect( sanitizeEpisodesCountCookie(-1)).toBe(EPISODE_COUNT);
-   expect( sanitizeEpisodesCountCookie(9)).toBe(EPISODE_COUNT);
-   expect( sanitizeEpisodesCountCookie('-1')).toBe(EPISODE_COUNT);
-   expect( sanitizeEpisodesCountCookie('9')).toBe(EPISODE_COUNT);
+  expect(sanitizeEpisodesCountCookie(-1)).toBe(EPISODE_COUNT);
+  expect(sanitizeEpisodesCountCookie(9)).toBe(EPISODE_COUNT);
+  expect(sanitizeEpisodesCountCookie('-1')).toBe(EPISODE_COUNT);
+  expect(sanitizeEpisodesCountCookie('9')).toBe(EPISODE_COUNT);
 
-   expect( sanitizeEpisodesCountCookie(1)).toBe(1);
-   expect( sanitizeEpisodesCountCookie(2)).toBe(2);
-   expect( sanitizeEpisodesCountCookie(3)).toBe(3);
-   expect( sanitizeEpisodesCountCookie(4)).toBe(4);
-   expect( sanitizeEpisodesCountCookie(5)).toBe(5);
-   expect( sanitizeEpisodesCountCookie(6)).toBe(6);
-   expect( sanitizeEpisodesCountCookie(7)).toBe(7);
-   expect( sanitizeEpisodesCountCookie(8)).toBe(8);
+  expect(sanitizeEpisodesCountCookie(1)).toBe(1);
+  expect(sanitizeEpisodesCountCookie(2)).toBe(2);
+  expect(sanitizeEpisodesCountCookie(3)).toBe(3);
+  expect(sanitizeEpisodesCountCookie(4)).toBe(4);
+  expect(sanitizeEpisodesCountCookie(5)).toBe(5);
+  expect(sanitizeEpisodesCountCookie(6)).toBe(6);
+  expect(sanitizeEpisodesCountCookie(7)).toBe(7);
+  expect(sanitizeEpisodesCountCookie(8)).toBe(8);
 
-   expect( sanitizeEpisodesCountCookie('1')).toBe(1);
-   expect( sanitizeEpisodesCountCookie('2')).toBe(2);
-   expect( sanitizeEpisodesCountCookie('3')).toBe(3);
-   expect( sanitizeEpisodesCountCookie('4')).toBe(4);
-   expect( sanitizeEpisodesCountCookie('5')).toBe(5);
-   expect( sanitizeEpisodesCountCookie('6')).toBe(6);
-   expect( sanitizeEpisodesCountCookie('7')).toBe(7);
-   expect( sanitizeEpisodesCountCookie('8')).toBe(8);
-})
+  expect(sanitizeEpisodesCountCookie('1')).toBe(1);
+  expect(sanitizeEpisodesCountCookie('2')).toBe(2);
+  expect(sanitizeEpisodesCountCookie('3')).toBe(3);
+  expect(sanitizeEpisodesCountCookie('4')).toBe(4);
+  expect(sanitizeEpisodesCountCookie('5')).toBe(5);
+  expect(sanitizeEpisodesCountCookie('6')).toBe(6);
+  expect(sanitizeEpisodesCountCookie('7')).toBe(7);
+  expect(sanitizeEpisodesCountCookie('8')).toBe(8);
+});
