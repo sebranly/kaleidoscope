@@ -96,6 +96,9 @@ test('getEpisodeByColor', () => {
     title: 'The Morning After The Heist',
     writers: ['somebody']
   });
+
+  const noEpisode = getEpisodeByColor([], Color.Red);
+  expect(noEpisode).toBeNull();
 });
 
 test('shuffleEpisodes', () => {

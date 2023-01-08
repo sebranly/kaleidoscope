@@ -1,5 +1,13 @@
 import React from 'react';
-import { CONFETTI_COLORS, EPISODE_COUNT, SHOW_RELEASE_DATE_PT, WEBSITE_TITLE, WEBSITE_URL } from './constants/general';
+import {
+  CONFETTI_COLORS,
+  COOKIE_EPISODES_COUNT,
+  COOKIE_EPISODES_ORDER,
+  EPISODE_COUNT,
+  SHOW_RELEASE_DATE_PT,
+  WEBSITE_TITLE,
+  WEBSITE_URL
+} from './constants/general';
 import { Footer } from './components/Footer';
 import { episodes } from './data';
 import './App.css';
@@ -18,10 +26,20 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Confetti from 'react-confetti';
 import useWindowSize from 'react-use/lib/useWindowSize';
 import { CountDownTimer } from './components/CountDownTimer';
+import { useCookies } from 'react-cookie';
+import { convertEpisodesToColors, sanitizeEpisodesCountCookie, sanitizeEpisodesOrderCookie } from './utils/cookie';
 
 function App() {
-  const [shareableEpisodes, setShareableEpisodes] = React.useState(EPISODE_COUNT);
-  const [episodesList, setEpisodesList] = React.useState<Episode[]>(netflixShuffleEpisodes(episodes));
+  const [cookies, setCookie] = useCookies([COOKIE_EPISODES_COUNT, COOKIE_EPISODES_ORDER]);
+
+  const cookieEpisodesList = sanitizeEpisodesOrderCookie(cookies[COOKIE_EPISODES_ORDER]);
+  const initialEpisodesList = cookieEpisodesList || netflixShuffleEpisodes(episodes);
+
+  const [shareableEpisodes, setShareableEpisodes] = React.useState(
+    sanitizeEpisodesCountCookie(cookies[COOKIE_EPISODES_COUNT])
+  );
+
+  const [episodesList, setEpisodesList] = React.useState<Episode[]>(initialEpisodesList);
   const [copiedWatchOrder, setCopiedWatchOrder] = React.useState(false);
 
   const { width } = useWindowSize();
@@ -37,6 +55,14 @@ function App() {
   React.useEffect(() => {
     setCopiedWatchOrder(false);
   }, [episodesList, shareableEpisodes]);
+
+  React.useEffect(() => {
+    setCookie(COOKIE_EPISODES_COUNT, shareableEpisodes, { path: '/' });
+  }, [setCookie, shareableEpisodes]);
+
+  React.useEffect(() => {
+    setCookie(COOKIE_EPISODES_ORDER, convertEpisodesToColors(episodesList), { path: '/' });
+  }, [setCookie, episodesList]);
 
   return (
     <div className="App">
@@ -177,12 +203,19 @@ function App() {
             />
           </div>
           <div className="episodes-watch-order-line">{episodesHeartEmoji}</div>
-          <br />
           <CopyToClipboard options={{ message: '' }} text={sharingText} onCopy={() => setCopiedWatchOrder(true)}>
             <button className={`basic-button ${classnamesCopy}`} disabled={copiedWatchOrder}>
               {copiedWatchOrder ? '📋 Copied to clipboard' : '🌐 Share your viewing order'}
             </button>
           </CopyToClipboard>
+          <div className="cookie-note">
+            <div>
+              <b>Note:</b> this website uses two cookies in order to save your shareable viewing order:
+            </div>
+            <div>
+              '{COOKIE_EPISODES_COUNT}' and '{COOKIE_EPISODES_ORDER}'
+            </div>
+          </div>
         </div>
       </section>
       <Footer />
