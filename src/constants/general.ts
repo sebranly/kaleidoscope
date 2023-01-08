@@ -1,6 +1,8 @@
 export const AUTHOR_NAME = 'sebranly';
 export const CONTRIBUTOR_NAME = 'StephaneBranly';
 export const CONTRIBUTOR_URL = `https://github.com/${CONTRIBUTOR_NAME}`;
+export const COOKIE_EPISODES_COUNT = 'episodes-count';
+export const COOKIE_EPISODES_ORDER = 'episodes-order';
 export const PROJECT_NAME = 'kaleidoscope';
 export const PROJECT_URL = `https://github.com/${AUTHOR_NAME}/${PROJECT_NAME}`;
 export const CHANGELOG_URL = `${PROJECT_URL}/releases`;
