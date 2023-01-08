@@ -124,6 +124,11 @@ test('sanitizeEpisodesCountCookie', () => {
    expect( sanitizeEpisodesCountCookie([undefined])).toBe(EPISODE_COUNT)
    expect( sanitizeEpisodesCountCookie([{}])).toBe(EPISODE_COUNT)
 
+   expect( sanitizeEpisodesCountCookie(-1)).toBe(EPISODE_COUNT);
+   expect( sanitizeEpisodesCountCookie(9)).toBe(EPISODE_COUNT);
+   expect( sanitizeEpisodesCountCookie('-1')).toBe(EPISODE_COUNT);
+   expect( sanitizeEpisodesCountCookie('9')).toBe(EPISODE_COUNT);
+
    expect( sanitizeEpisodesCountCookie(1)).toBe(1);
    expect( sanitizeEpisodesCountCookie(2)).toBe(2);
    expect( sanitizeEpisodesCountCookie(3)).toBe(3);
