@@ -8,6 +8,7 @@ test('EpisodeBlock', () => {
   const episode: Episode = {
     color: Color.Red,
     defaultNumber: 1,
+    director: 'Somebody',
     hoursFromHeist: -24,
     title: 'Some title',
     writers: ['Someone', 'Someone else']

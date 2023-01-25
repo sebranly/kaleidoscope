@@ -21,7 +21,7 @@ const episodes: Episode[] = [
     defaultNumber: 1,
     director: 'somebody',
     hoursFromHeist: -6 * 7 * 24,
-    title: '6 Weeks Before The Heist',
+    title: '6 Weeks Before the Heist',
     writers: ['somebody']
   },
   {
@@ -29,49 +29,55 @@ const episodes: Episode[] = [
     defaultNumber: 2,
     director: 'somebody',
     hoursFromHeist: -7 * 365 * 24,
-    title: '7 Years Before The Heist',
+    title: '7 Years Before the Heist',
     writers: ['somebody']
   },
   {
     color: Color.Blue,
     defaultNumber: 3,
+    director: 'somebody',
     hoursFromHeist: -5 * 24,
-    title: '5 Days Before The Heist',
+    title: '5 Days Before the Heist',
     writers: ['somebody']
   },
   {
     color: Color.Violet,
     defaultNumber: 4,
+    director: 'somebody',
     hoursFromHeist: -24 * 365 * 24,
-    title: '24 Years Before The Heist',
+    title: '24 Years Before the Heist',
     writers: ['somebody']
   },
   {
     color: Color.Orange,
     defaultNumber: 5,
+    director: 'somebody',
     hoursFromHeist: -3 * 7 * 24,
-    title: '3 Weeks Before The Heist',
+    title: '3 Weeks Before the Heist',
     writers: ['somebody']
   },
   {
     color: Color.Red,
     defaultNumber: 6,
+    director: 'somebody',
     hoursFromHeist: 12,
-    title: 'The Morning After The Heist',
+    title: 'The Morning After the Heist',
     writers: ['somebody']
   },
   {
     color: Color.Pink,
     defaultNumber: 7,
+    director: 'somebody',
     hoursFromHeist: 6 * 30 * 24,
-    title: '6 Months After The Heist',
+    title: '6 Months After the Heist',
     writers: ['somebody']
   },
   {
     color: Color.White,
     defaultNumber: 8,
+    director: 'somebody',
     hoursFromHeist: 0,
-    title: 'Finale: The Heist',
+    title: 'Finale: the Heist',
     writers: ['somebody', 'somebody']
   }
 ];
@@ -92,8 +98,9 @@ test('getEpisodeByColor', () => {
   expect(redEpisode).toStrictEqual({
     color: Color.Red,
     defaultNumber: 6,
+    director: 'somebody',
     hoursFromHeist: 12,
-    title: 'The Morning After The Heist',
+    title: 'The Morning After the Heist',
     writers: ['somebody']
   });
 

@@ -12,7 +12,7 @@ export enum Color {
 export type Episode = {
   color: Color;
   defaultNumber: number;
-  director?: string;
+  director: string;
   hoursFromHeist: number;
   title: string;
   writers: string[];

@@ -27,6 +27,15 @@ NodeList [
       class="episode-content"
     >
       <div
+        class="episode-director"
+      >
+        <b>
+          Director:
+        </b>
+         
+        Somebody
+      </div>
+      <div
         class="episode-writers"
       >
         <b>
