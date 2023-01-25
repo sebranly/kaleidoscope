@@ -48,20 +48,20 @@ const episodes: Episode[] = [
     writers: [garrett]
   },
   {
-    color: Color.Violet,
-    defaultNumber: 4,
-    director: robert,
-    hoursFromHeist: -24 * 365 * 24,
-    title: '24 Years Before the Heist',
-    writers: [ning]
-  },
-  {
     color: Color.Orange,
-    defaultNumber: 5,
+    defaultNumber: 4,
     director: mairzee,
     hoursFromHeist: -3 * 7 * 24,
     title: '3 Weeks Before the Heist',
     writers: [kate]
+  },
+  {
+    color: Color.Violet,
+    defaultNumber: 5,
+    director: robert,
+    hoursFromHeist: -24 * 365 * 24,
+    title: '24 Years Before the Heist',
+    writers: [ning]
   },
   {
     color: Color.Red,
@@ -87,8 +87,8 @@ test('convertEpisodesToColors', () => {
     Color.Yellow,
     Color.Green,
     Color.Blue,
-    Color.Violet,
     Color.Orange,
+    Color.Violet,
     Color.Red,
     Color.Pink
   ]);
@@ -111,20 +111,20 @@ test('sanitizeEpisodesOrderCookie', () => {
   expect(sanitizeEpisodesOrderCookie([undefined])).toBeNull();
   expect(sanitizeEpisodesOrderCookie([{}])).toBeNull();
 
-  expect(sanitizeEpisodesOrderCookie(['yellow', 'green', 'blue', 'violet', 'orange', 'red', 'pink'])).toBeNull();
+  expect(sanitizeEpisodesOrderCookie(['yellow', 'green', 'blue', 'orange', 'violet', 'red', 'pink'])).toBeNull();
 
-  expect(sanitizeEpisodesOrderCookie([0, 'yellow', 'green', 'blue', 'violet', 'orange', 'red', 'pink'])).toBeNull();
+  expect(sanitizeEpisodesOrderCookie([0, 'yellow', 'green', 'blue', 'orange', 'violet', 'red', 'pink'])).toBeNull();
 
   expect(
-    sanitizeEpisodesOrderCookie(['someimaginarycolor', 'yellow', 'green', 'blue', 'violet', 'orange', 'red', 'pink'])
+    sanitizeEpisodesOrderCookie(['someimaginarycolor', 'yellow', 'green', 'blue', 'orange', 'violet', 'red', 'pink'])
   ).toBeNull();
 
   expect(
-    sanitizeEpisodesOrderCookie(['yellow', 'yellow', 'green', 'blue', 'violet', 'orange', 'red', 'pink'])
+    sanitizeEpisodesOrderCookie(['yellow', 'yellow', 'green', 'blue', 'orange', 'violet', 'red', 'pink'])
   ).toBeNull();
 
   expect(
-    sanitizeEpisodesOrderCookie(['white', 'yellow', 'green', 'blue', 'violet', 'orange', 'red', 'pink'])
+    sanitizeEpisodesOrderCookie(['white', 'yellow', 'green', 'blue', 'orange', 'violet', 'red', 'pink'])
   ).toStrictEqual(episodes);
 });
 

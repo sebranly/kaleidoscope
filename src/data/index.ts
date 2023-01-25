@@ -38,20 +38,20 @@ const episodes: Episode[] = [
     writers: [garrett]
   },
   {
-    color: Color.Violet,
-    defaultNumber: 4,
-    director: robert,
-    hoursFromHeist: -24 * 365 * 24,
-    title: '24 Years Before the Heist',
-    writers: [ning]
-  },
-  {
     color: Color.Orange,
-    defaultNumber: 5,
+    defaultNumber: 4,
     director: mairzee,
     hoursFromHeist: -3 * 7 * 24,
     title: '3 Weeks Before the Heist',
     writers: [kate]
+  },
+  {
+    color: Color.Violet,
+    defaultNumber: 5,
+    director: robert,
+    hoursFromHeist: -24 * 365 * 24,
+    title: '24 Years Before the Heist',
+    writers: [ning]
   },
   {
     color: Color.Red,
