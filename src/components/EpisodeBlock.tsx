@@ -41,14 +41,12 @@ const EpisodeBlock: React.FC<EpisodeBlockProps> = (props) => {
       </div>
       <div className={`episode-content-separator bg-color-${color}`}></div>
       <div className="episode-content">
+        <div className="episode-director">
+          <b>Director:</b> {director}
+        </div>
         <div className="episode-writers">
           <b>{writersCopy}:</b> {writers.join(', ')}
         </div>
-        {director && (
-          <div className="episode-director">
-            <b>Director:</b> {director}
-          </div>
-        )}
         <div className="episode-number">
           <b>Episode</b> {defaultNumber}
         </div>
